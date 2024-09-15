@@ -1,23 +1,40 @@
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import PropTypes from 'prop-types'
+import { Container, Nav, Navbar } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
-const Header = () => {
+const Header = ({ user, logout }) => {
+    const handleLogout = () => {
+        logout()
+    }
     return (
-        <Navbar bg="dark" data-bs-theme="dark">
+        <Navbar bg="light" data-bs-theme="light">
             <Container>
-                <Navbar.Brand href="#home">Survey App</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/">Survey App</Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link href="#">Open Surveys</Nav.Link>
-                    <Nav.Link href="#">Closed Surveys</Nav.Link>
+                    <Nav.Link as={Link} to="/open-surveys">Open Surveys</Nav.Link>
+                    <Nav.Link as={Link} to="/closed-surveys">Closed Surveys</Nav.Link>
                 </Nav>
                 <Navbar.Collapse className="justify-content-end">
                     <Nav>
-                        <Nav.Link href="#">Sign Up</Nav.Link>
-                        <Nav.Link href="#">Login</Nav.Link>
+                        <Nav.Link as={Link} to="/signup">Sign Up</Nav.Link>
+                        {user ? (
+                            <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+                        ) : (
+                            <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                        )}
                     </Nav>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-    );
-};
+    )
+}
 
-export default Header;
+Header.propTypes = {
+    user: PropTypes.shape({
+        username: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired
+    }),
+    logout: PropTypes.func.isRequired
+}
+
+export default Header
