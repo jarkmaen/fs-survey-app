@@ -1,5 +1,6 @@
 import loginService from '../services/login'
 import storageService from '../services/storage'
+import usersService from '../services/users'
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = null
@@ -19,6 +20,20 @@ const slice = createSlice({
 
 export const { set, clear } = slice.actions
 
+export const clearUser = () => {
+    return async dispatch => {
+        storageService.removeUser()
+        dispatch(clear())
+    }
+}
+
+export const initUser = () => {
+    return async dispatch => {
+        const user = storageService.loadUser()
+        dispatch(set(user))
+    }
+}
+
 export const loginUser = (credentials) => {
     return async dispatch => {
         try {
@@ -31,17 +46,15 @@ export const loginUser = (credentials) => {
     }
 }
 
-export const initUser = () => {
+export const registerUser = (userData) => {
     return async dispatch => {
-        const user = storageService.loadUser()
-        dispatch(set(user))
-    }
-}
-
-export const clearUser = () => {
-    return async dispatch => {
-        storageService.removeUser()
-        dispatch(clear())
+        try {
+            const user = await usersService.register(userData)
+            storageService.saveUser(user)
+            dispatch(set(user))
+        } catch (e) {
+            console.log(e)
+        }
     }
 }
 

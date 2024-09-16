@@ -1,17 +1,18 @@
 import '../app.css'
 import { Button, Form } from 'react-bootstrap'
-import { loginUser } from '../reducers/user'
+import { registerUser } from '../reducers/user'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 
-const LoginForm = () => {
-    const [username, setUsername] = useState('testuser')
-    const [password, setPassword] = useState('password123')
+const RegisterForm = () => {
+    const [name, setName] = useState('')
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
     const dispatch = useDispatch()
     const handleSubmit = async (event) => {
         event.preventDefault()
         try {
-            dispatch(loginUser({ username, password }))
+            dispatch(registerUser({ name, username, password }))
         } catch (e) {
             console.log(e)
         }
@@ -20,13 +21,22 @@ const LoginForm = () => {
         <div>
             <Form className="auth-form" onSubmit={handleSubmit}>
                 <h1 className="fw-bold text-center">Welcome</h1>
-                <h2 className="text-center">Log in to application</h2>
+                <h2 className="text-center">Register to application</h2>
+                <Form.Group className="mb-3">
+                    <Form.Label>Name</Form.Label>
+                    <Form.Control
+                        value={name}
+                        onChange={({ target }) => setName(target.value)}
+                        type="text"
+                        placeholder="Enter your name"
+                    />
+                </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Username</Form.Label>
                     <Form.Control
                         value={username}
                         onChange={({ target }) => setUsername(target.value)}
-                        type="username"
+                        type="text"
                         placeholder="Enter username"
                     />
                 </Form.Group>
@@ -47,4 +57,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm
+export default RegisterForm
