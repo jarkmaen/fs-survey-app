@@ -2,6 +2,7 @@ import Header from './components/Header'
 import Home from './components/Home'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
+import SurveyList from './components/SurveyList'
 import { Container } from 'react-bootstrap'
 import { Routes, Route } from 'react-router-dom'
 import { useClearUser, useInitialization } from './hooks/index'
@@ -23,6 +24,7 @@ function App() {
             <Header user={user} logout={logout} />
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/surveys" element={<SurveyList />} />
                 <Route path="/signup" element={<RegisterForm />} />
                 <Route path="/login" element={<LoginForm />} />
             </Routes>

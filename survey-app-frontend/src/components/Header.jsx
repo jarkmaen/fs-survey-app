@@ -11,7 +11,7 @@ const Header = ({ user, logout }) => {
             <Container>
                 <Navbar.Brand as={Link} to="/">Survey App</Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link as={Link} to="/open-surveys">Open Surveys</Nav.Link>
+                    <Nav.Link as={Link} to="/surveys">Open Surveys</Nav.Link>
                     <Nav.Link as={Link} to="/closed-surveys">Closed Surveys</Nav.Link>
                 </Nav>
                 <Navbar.Collapse className="justify-content-end">

@@ -1,0 +1,66 @@
+POST http://localhost:3001/api/surveys
+Content-Type: application/json
+
+{
+    "title": "Data Analysis With Python Course Feedback",
+    "questions": [
+        {
+            "text": "The learning objectives were clear to me.",
+            "answers": [
+                { "text": "1" },
+                { "text": "2" },
+                { "text": "3" },
+                { "text": "4" },
+                { "text": "5" },
+                { "text": "N/A" }
+            ]
+        },
+        {
+            "text": "The course activities supported my learning.",
+            "answers": [
+                { "text": "1" },
+                { "text": "2" },
+                { "text": "3" },
+                { "text": "4" },
+                { "text": "5" },
+                { "text": "N/A" }
+            ]
+        },
+        {
+            "text": "The course materials supported my learning.",
+            "answers": [
+                { "text": "1" },
+                { "text": "2" },
+                { "text": "3" },
+                { "text": "4" },
+                { "text": "5" },
+                { "text": "N/A" }
+            ]
+        },
+        {
+            "text": "The methods used to assess the course measure my learning.",
+            "answers": [
+                { "text": "1" },
+                { "text": "2" },
+                { "text": "3" },
+                { "text": "4" },
+                { "text": "5" },
+                { "text": "N/A" }
+            ]
+        },
+        {
+            "text": "The workload relative to course credits was.",
+            "answers": [
+                { "text": "too heavy" },
+                { "text": "somewhat too heavy" },
+                { "text": "appropriate" },
+                { "text": "somewhat too light" },
+                { "text": "too light" }
+            ]
+        },
+        {
+            "text": "Any additional comments or suggestions",
+            "answers": []
+        }
+    ]
+}

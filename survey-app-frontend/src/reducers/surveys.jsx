@@ -1,8 +1,8 @@
-import usersService from '../services/users'
+import surveysService from '../services/surveys'
 import { createSlice } from '@reduxjs/toolkit'
 
 const slice = createSlice({
-    name: 'users',
+    name: 'surveys',
     initialState: [],
     reducers: {
         set(state, { payload }) {
@@ -13,9 +13,9 @@ const slice = createSlice({
 
 const { set } = slice.actions
 
-export const initUsers = () => {
+export const initSurveys = () => {
     return async dispatch => {
-        const data = await usersService.getAll()
+        const data = await surveysService.getAll()
         dispatch(set(data))
     }
 }

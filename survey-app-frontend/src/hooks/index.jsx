@@ -1,13 +1,15 @@
-import { initializeUsers } from '../reducers/users'
+import { initSurveys } from '../reducers/surveys'
 import { initUser, clearUser } from '../reducers/user'
+import { initUsers } from '../reducers/users'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 
 export const useInitialization = () => {
     const dispatch = useDispatch()
     return () => {
-        dispatch(initializeUsers())
+        dispatch(initSurveys())
         dispatch(initUser())
+        dispatch(initUsers())
     }
 }
 

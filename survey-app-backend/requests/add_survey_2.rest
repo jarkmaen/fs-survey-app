@@ -1,0 +1,29 @@
+POST http://localhost:3001/api/surveys
+Content-Type: application/json
+
+{
+    "title": "Customer Satisfaction Survey",
+    "questions": [
+        {
+            "text": "How would you rate your overall satisfaction with our services?",
+            "answers": [
+                { "text": "Very Satisfied" },
+                { "text": "Satisfied" },
+                { "text": "Neutral" },
+                { "text": "Unsatisfied" },
+                { "text": "Very Dissatisfied" }
+            ]
+        },
+        {
+            "text": "Would you recommend us to others?",
+            "answers": [
+                { "text": "Yes" },
+                { "text": "No" }
+            ]
+        },
+        {
+            "text": "What would you improve if you could?",
+            "answers": []
+        }
+    ]
+}
