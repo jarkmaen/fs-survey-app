@@ -7,5 +7,6 @@
 | 15.9. | 6    | login form and login functionality with token done, redux and mongodb working |
 | 16.9. | 2    | register form and automatic login after registering |
 | 17.9. | 4    | designing and developing survey functionality, frontend integration |
+| 18.9. | 1    | adding the ability to view surveys |
 |       |      | |
-| yht   | 18   | |
+| yht   | 19   | |

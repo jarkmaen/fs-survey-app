@@ -6,7 +6,7 @@ Content-Type: application/json
     "questions": [
         {
             "text": "The learning objectives were clear to me.",
-            "answers": [
+            "options": [
                 { "text": "1" },
                 { "text": "2" },
                 { "text": "3" },
@@ -17,7 +17,7 @@ Content-Type: application/json
         },
         {
             "text": "The course activities supported my learning.",
-            "answers": [
+            "options": [
                 { "text": "1" },
                 { "text": "2" },
                 { "text": "3" },
@@ -28,7 +28,7 @@ Content-Type: application/json
         },
         {
             "text": "The course materials supported my learning.",
-            "answers": [
+            "options": [
                 { "text": "1" },
                 { "text": "2" },
                 { "text": "3" },
@@ -39,7 +39,7 @@ Content-Type: application/json
         },
         {
             "text": "The methods used to assess the course measure my learning.",
-            "answers": [
+            "options": [
                 { "text": "1" },
                 { "text": "2" },
                 { "text": "3" },
@@ -50,7 +50,7 @@ Content-Type: application/json
         },
         {
             "text": "The workload relative to course credits was.",
-            "answers": [
+            "options": [
                 { "text": "too heavy" },
                 { "text": "somewhat too heavy" },
                 { "text": "appropriate" },
@@ -60,7 +60,7 @@ Content-Type: application/json
         },
         {
             "text": "Any additional comments or suggestions",
-            "answers": []
+            "options": []
         }
     ]
 }

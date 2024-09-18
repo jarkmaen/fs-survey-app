@@ -6,7 +6,7 @@ Content-Type: application/json
     "questions": [
         {
             "text": "How would you rate your overall satisfaction with our services?",
-            "answers": [
+            "options": [
                 { "text": "Very Satisfied" },
                 { "text": "Satisfied" },
                 { "text": "Neutral" },
@@ -16,14 +16,14 @@ Content-Type: application/json
         },
         {
             "text": "Would you recommend us to others?",
-            "answers": [
+            "options": [
                 { "text": "Yes" },
                 { "text": "No" }
             ]
         },
         {
             "text": "What would you improve if you could?",
-            "answers": []
+            "options": []
         }
     ]
 }

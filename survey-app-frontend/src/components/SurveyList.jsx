@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { ListGroup, ListGroupItem } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 
@@ -9,7 +10,9 @@ const SurveyList = () => {
             <ListGroup>
                 {surveys.map((survey) => (
                     <ListGroupItem key={survey._id}>
-                        {survey.title}
+                        <Link to={`/surveys/${survey._id}`}>
+                            {survey.title}
+                        </Link>
                     </ListGroupItem>
                 ))}
             </ListGroup>
