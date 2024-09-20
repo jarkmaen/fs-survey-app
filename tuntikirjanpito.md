@@ -8,5 +8,6 @@
 | 16.9. | 2    | register form and automatic login after registering |
 | 17.9. | 4    | designing and developing survey functionality, frontend integration |
 | 18.9. | 1    | adding the ability to view surveys |
+| 20.9. | 4    | front and backend logic for submitting a response to a survey |
 |       |      | |
-| yht   | 19   | |
+| yht   | 23   | |

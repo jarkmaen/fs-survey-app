@@ -1,0 +1,33 @@
+POST http://localhost:3001/api/responses
+Content-Type: application/json
+
+{
+    "surveyId": "66ed6d498fad851424c46c6d",
+    "userId": "66ed6d3d8fad851424c46c6b",
+    "response": [
+        {
+            "questionId": "66ed6d498fad851424c46c6e",
+            "optionId": "66ed6d498fad851424c46c6f"
+        },
+        {
+            "questionId": "66ed6d498fad851424c46c75",
+            "optionId": "66ed6d498fad851424c46c76"
+        },
+        {
+            "questionId": "66ed6d498fad851424c46c7c",
+            "optionId": "66ed6d498fad851424c46c7d"
+        },
+        {
+            "questionId": "66ed6d498fad851424c46c83",
+            "optionId": "66ed6d498fad851424c46c84"
+        },
+        {
+            "questionId": "66ed6d498fad851424c46c8a",
+            "optionId": "66ed6d498fad851424c46c8b"
+        },
+        {
+            "questionId": "66ed6d498fad851424c46c90",
+            "otherText": "Lorem ipsum dolor sit amet"
+        }
+    ]
+}

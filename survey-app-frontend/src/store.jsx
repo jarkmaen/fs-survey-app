@@ -1,3 +1,4 @@
+import responsesReducer from './reducers/responses'
 import surveysReducer from './reducers/surveys'
 import userReducer from './reducers/user'
 import usersReducer from './reducers/users'
@@ -5,6 +6,7 @@ import { configureStore } from '@reduxjs/toolkit'
 
 const store = configureStore({
     reducer: {
+        responses: responsesReducer,
         surveys: surveysReducer,
         user: userReducer,
         users: usersReducer
