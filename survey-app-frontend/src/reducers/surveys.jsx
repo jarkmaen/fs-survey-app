@@ -7,16 +7,26 @@ const slice = createSlice({
     reducers: {
         set(state, { payload }) {
             return payload
+        },
+        add(state, { payload }) {
+            return state.concat(payload)
         }
     }
 })
 
-const { set } = slice.actions
+const { set, add } = slice.actions
 
 export const initSurveys = () => {
     return async dispatch => {
         const data = await surveysService.getAll()
         dispatch(set(data))
+    }
+}
+
+export const addSurvey = (survey) => {
+    return async dispatch => {
+        const data = await surveysService.create(survey)
+        dispatch(add(data))
     }
 }
 

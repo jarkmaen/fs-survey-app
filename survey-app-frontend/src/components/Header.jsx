@@ -13,6 +13,7 @@ const Header = ({ user, logout }) => {
                 <Nav className="me-auto">
                     <Nav.Link as={Link} to="/surveys">Open Surveys</Nav.Link>
                     <Nav.Link as={Link} to="/closed-surveys">Closed Surveys</Nav.Link>
+                    <Nav.Link as={Link} to="/create-survey">Create Survey</Nav.Link>
                 </Nav>
                 <Navbar.Collapse className="justify-content-end">
                     <Nav>
