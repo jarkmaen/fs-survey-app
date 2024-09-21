@@ -2,64 +2,31 @@ POST http://localhost:3001/api/surveys
 Content-Type: application/json
 
 {
-    "title": "Data Analysis With Python Course Feedback",
+    "title": "Data Analysis with Python",
+    "description": "Open uni: Data Analysis with Python, Online teaching",
     "questions": [
         {
-            "text": "The learning objectives were clear to me.",
-            "options": [
-                { "text": "1" },
-                { "text": "2" },
-                { "text": "3" },
-                { "text": "4" },
-                { "text": "5" },
-                { "text": "N/A" }
-            ]
+            "question": "The learning objectives were clear to me.",
+            "options": ["1", "2", "3", "4", "5", "N/A"]
         },
         {
-            "text": "The course activities supported my learning.",
-            "options": [
-                { "text": "1" },
-                { "text": "2" },
-                { "text": "3" },
-                { "text": "4" },
-                { "text": "5" },
-                { "text": "N/A" }
-            ]
+            "question": "The course activities supported my learning.",
+            "options": ["1", "2", "3", "4", "5", "N/A"]
         },
         {
-            "text": "The course materials supported my learning.",
-            "options": [
-                { "text": "1" },
-                { "text": "2" },
-                { "text": "3" },
-                { "text": "4" },
-                { "text": "5" },
-                { "text": "N/A" }
-            ]
+            "question": "The course materials supported my learning.",
+            "options": ["1", "2", "3", "4", "5", "N/A"]
         },
         {
-            "text": "The methods used to assess the course measure my learning.",
-            "options": [
-                { "text": "1" },
-                { "text": "2" },
-                { "text": "3" },
-                { "text": "4" },
-                { "text": "5" },
-                { "text": "N/A" }
-            ]
+            "question": "The methods used to assess the course measure my learning.",
+            "options": ["1", "2", "3", "4", "5", "N/A"]
         },
         {
-            "text": "The workload relative to course credits was.",
-            "options": [
-                { "text": "too heavy" },
-                { "text": "somewhat too heavy" },
-                { "text": "appropriate" },
-                { "text": "somewhat too light" },
-                { "text": "too light" }
-            ]
+            "question": "The workload relative to course credits was.",
+            "options": ["too heavy", "somewhat too heavy", "appropriate", "somewhat too light", "too light"]
         },
         {
-            "text": "Any additional comments or suggestions",
+            "question": "Any additional comments or suggestions.",
             "options": []
         }
     ]

@@ -1,33 +1,30 @@
 const mongoose = require('mongoose')
-
-const optionSchema = new mongoose.Schema({
-    text: {
-        type: String,
-        required: true
-    },
-    isOther: {
-        type: Boolean,
-        default: false
-    }
-})
-
-const questionSchema = new mongoose.Schema({
-    text: {
-        type: String,
-        required: true
-    },
-    options: [optionSchema]
-})
+const questionSchema = require('./question').schema
 
 const surveySchema = new mongoose.Schema({
     title: {
         type: String,
         required: true
     },
-    questions: [questionSchema],
+    description: {
+        type: String,
+        required: true
+    },
+    questions: {
+        type: [questionSchema],
+        required: true
+    },
     closed: {
         type: Boolean,
         default: false
+    }
+})
+
+surveySchema.set('toJSON', {
+    transform: (document, returnedObject) => {
+        returnedObject.id = returnedObject._id.toString()
+        delete returnedObject._id
+        delete returnedObject.__v
     }
 })
 

@@ -10,5 +10,8 @@
 | 18.9. | 1    | adding the ability to view surveys |
 | 20.9. | 4    | front and backend logic for submitting a response to a survey |
 | 20.9. | 3    | adding survey creation form |
+| 21.9. | 2    | listing open and closed surveys on the home page, improving the survey listing ui, making sure users cannot send a response to a closed survey |
+| 21.9. | 2    | separating survey into response and results components, figuring out how to make survey results view |
+| 21.9. | 4    | reworking survey schemas and backend to be more straightforward and less unnecessarily complex |
 |       |      | |
-| yht   | 26   | |
+| yht   | 34   | |

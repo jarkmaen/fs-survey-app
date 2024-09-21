@@ -3,26 +3,18 @@ Content-Type: application/json
 
 {
     "title": "Customer Satisfaction Survey",
+    "description": "Customer satisfaction survey for our services",
     "questions": [
         {
-            "text": "How would you rate your overall satisfaction with our services?",
-            "options": [
-                { "text": "Very Satisfied" },
-                { "text": "Satisfied" },
-                { "text": "Neutral" },
-                { "text": "Unsatisfied" },
-                { "text": "Very Dissatisfied" }
-            ]
+            "question": "How would you rate your overall satisfaction with our services?",
+            "options": ["Very Satisfied", "Satisfied", "Neutral", "Unsatisfied", "Very Dissatisfied"]
         },
         {
-            "text": "Would you recommend us to others?",
-            "options": [
-                { "text": "Yes" },
-                { "text": "No" }
-            ]
+            "question": "Would you recommend us to others?",
+            "options": ["Yes", "No"]
         },
         {
-            "text": "What would you improve if you could?",
+            "question": "What would you improve if you could?",
             "options": []
         }
     ]

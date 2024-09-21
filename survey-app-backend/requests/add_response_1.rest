@@ -1,34 +1,32 @@
-POST http://localhost:3001/api/responses
+POST http://localhost:3001/api/surveys/66ef27d9998d8dca4771d91b/responses
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3R1c2VyIiwiaWQiOiI2NmVkNmQzZDhmYWQ4NTE0MjRjNDZjNmIiLCJpYXQiOjE3MjY5MjA4NDh9.n0OZc6AWMBogSfYdP4mMNGM2YgL4ox3ZCkbfE2AZB9I
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZWYyZGM1ZmI4NDM3YmU0ZDJmZTM3NiIsInVzZXJuYW1lIjoidGVzdHVzZXIiLCJpYXQiOjE3MjY5NTA4NTh9.nheXOYjQ025WWAZeJvcfBS_-Eo8Gd9AbRh5IKYIKb6U
 
 {
-    "surveyId": "66ed6d498fad851424c46c6d",
-    "userId": "66ed6d3d8fad851424c46c6b",
-    "response": [
+    "questions": [
         {
-            "questionId": "66ed6d498fad851424c46c6e",
-            "optionId": "66ed6d498fad851424c46c6f"
+            "id": "66ef27d9998d8dca4771d915",
+            "response": "1"
         },
         {
-            "questionId": "66ed6d498fad851424c46c75",
-            "optionId": "66ed6d498fad851424c46c76"
+            "id": "66ef27d9998d8dca4771d916",
+            "response": "2"
         },
         {
-            "questionId": "66ed6d498fad851424c46c7c",
-            "optionId": "66ed6d498fad851424c46c7d"
+            "id": "66ef27d9998d8dca4771d917",
+            "response": "3"
         },
         {
-            "questionId": "66ed6d498fad851424c46c83",
-            "optionId": "66ed6d498fad851424c46c84"
+            "id": "66ef27d9998d8dca4771d918",
+            "response": "4"
         },
         {
-            "questionId": "66ed6d498fad851424c46c8a",
-            "optionId": "66ed6d498fad851424c46c8b"
+            "id": "66ef27d9998d8dca4771d919",
+            "response": "5"
         },
         {
-            "questionId": "66ed6d498fad851424c46c90",
-            "otherText": "Lorem ipsum dolor sit amet"
+            "id": "66ef27d9998d8dca4771d91a",
+            "response": "Lorem ipsum dolor sit amet"
         }
     ]
 }
