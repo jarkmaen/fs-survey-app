@@ -24,7 +24,11 @@ const surveySchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    questions: [questionSchema]
+    questions: [questionSchema],
+    closed: {
+        type: Boolean,
+        default: false
+    }
 })
 
 const Survey = mongoose.model('Survey', surveySchema)

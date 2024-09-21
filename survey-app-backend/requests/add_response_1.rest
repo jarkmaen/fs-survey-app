@@ -1,5 +1,6 @@
 POST http://localhost:3001/api/responses
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3R1c2VyIiwiaWQiOiI2NmVkNmQzZDhmYWQ4NTE0MjRjNDZjNmIiLCJpYXQiOjE3MjY5MjA4NDh9.n0OZc6AWMBogSfYdP4mMNGM2YgL4ox3ZCkbfE2AZB9I
 
 {
     "surveyId": "66ed6d498fad851424c46c6d",
