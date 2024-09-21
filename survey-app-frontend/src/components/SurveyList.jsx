@@ -3,15 +3,16 @@ import { FaClipboardList, FaClock } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-const SurveyList = () => {
+const SurveyList = ({ closed }) => {
     const surveys = useSelector(({ surveys }) => surveys)
+    const filteredSurveys = surveys.filter(survey => survey.closed === closed);
     const closeSurvey = (title) => {
         console.log(`closing survey ${title}`)
     }
     return (
         <div>
             <Row>
-                {surveys.map((survey) => (
+                {filteredSurveys.map((survey) => (
                     <Col className="mb-4" key={survey._id} md={4}>
                         <Card>
                             <Card.Body>
@@ -26,11 +27,13 @@ const SurveyList = () => {
                                 </Card.Text>
                                 <div className="d-flex justify-content-between">
                                     <Button as={Link} className="flex-grow-1 mx-1" to={`/surveys/${survey._id}`} variant="primary">
-                                        Take Survey
+                                        {closed ? 'View Results' : 'Take Survey'}
                                     </Button>
-                                    <Button className="flex-grow-1 mx-1" onClick={() => closeSurvey(survey.title)} variant="danger">
-                                        Close Survey
-                                    </Button>
+                                    {!closed && (
+                                        <Button className="flex-grow-1 mx-1" onClick={() => closeSurvey(survey.title)} variant="danger">
+                                            Close Survey
+                                        </Button>
+                                    )}
                                 </div>
                             </Card.Body>
                         </Card>
