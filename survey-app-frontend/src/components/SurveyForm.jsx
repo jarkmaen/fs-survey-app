@@ -24,7 +24,7 @@ const SurveyForm = () => {
     const addQuestion = () => {
         setQuestions((current) => [
             ...current,
-            { text: '', options: [{ text: '' }], isOther: false },
+            { text: '', options: [{ text: '' }], isOther: false }
         ])
     }
     const handleChange = (qIdx, oIdx, e) => {

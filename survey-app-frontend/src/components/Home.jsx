@@ -1,17 +1,22 @@
-import userService from '../services/user'
-import { useState } from 'react'
+import SurveysList from './SurveyList'
+import { Col, Container, Row } from 'react-bootstrap'
 
 const Home = () => {
-    const [user, setUser] = useState(null)
-    const handleGetUser = () => {
-        const user = userService.getUser()
-        setUser(user)
-        console.log(user)
-    }
     return (
-        <div>
-            <button onClick={handleGetUser}>Get user</button>
-        </div>
+        <Container>
+            <Row>
+                <Col>
+                    <h2>Active Surveys</h2>
+                    <SurveysList />
+                </Col>
+            </Row>
+            <hr />
+            <Row>
+                <Col>
+                    <h2>Closed Surveys</h2>
+                </Col>
+            </Row>
+        </Container>
     )
 }
 
