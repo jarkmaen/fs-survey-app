@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 
 const Survey = () => {
     const { id } = useParams()
-    const survey = useSelector(({ surveys }) => surveys.find(s => s._id === id))
+    const survey = useSelector(({ surveys }) => surveys.find((s) => s.id === id))
     if (!survey) {
         return <div>Survey not found</div>
     }

@@ -24,19 +24,19 @@ const LoginForm = () => {
                 <Form.Group className="mb-3">
                     <Form.Label>Username</Form.Label>
                     <Form.Control
-                        value={username}
                         onChange={({ target }) => setUsername(target.value)}
-                        type="username"
                         placeholder="Enter username"
+                        type="username"
+                        value={username}
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Password</Form.Label>
                     <Form.Control
-                        value={password}
                         onChange={({ target }) => setPassword(target.value)}
-                        type="password"
                         placeholder="Password"
+                        type="password"
+                        value={password}
                     />
                 </Form.Group>
                 <Button type="submit" variant="primary">

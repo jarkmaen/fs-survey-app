@@ -21,21 +21,21 @@ const slice = createSlice({
 export const { set, clear } = slice.actions
 
 export const clearUser = () => {
-    return async dispatch => {
+    return async (dispatch) => {
         storageService.removeUser()
         dispatch(clear())
     }
 }
 
 export const initUser = () => {
-    return async dispatch => {
+    return async (dispatch) => {
         const user = storageService.loadUser()
         dispatch(set(user))
     }
 }
 
 export const loginUser = (credentials) => {
-    return async dispatch => {
+    return async (dispatch) => {
         try {
             const user = await loginService.login(credentials)
             storageService.saveUser(user)
@@ -47,7 +47,7 @@ export const loginUser = (credentials) => {
 }
 
 export const registerUser = (userData) => {
-    return async dispatch => {
+    return async (dispatch) => {
         try {
             const user = await usersService.register(userData)
             storageService.saveUser(user)

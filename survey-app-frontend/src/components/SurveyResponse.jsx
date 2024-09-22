@@ -1,4 +1,4 @@
-import { addResponse } from '../reducers/responses'
+import { respondSurvey } from '../reducers/surveys'
 import { Button, Col, Container, Form, ListGroup, ListGroupItem, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
@@ -6,59 +6,58 @@ import { useState } from 'react'
 
 const SurveyResponse = () => {
     const [response, setResponse] = useState({})
-    const id = useParams().id
-    const survey = useSelector(({ surveys }) => surveys.find(s => s._id === id))
     const dispatch = useDispatch()
+    const { id } = useParams()
+    const survey = useSelector(({ surveys }) => surveys.find((s) => s.id === id))
     if (!survey) {
-        return null
+        return <div>Survey not found</div>
     }
-    const handleOptionChange = (qIdx, oIdx) => {
+    const handleChange = (qIdx, text) => {
         setResponse({
             ...response,
-            [qIdx]: { oIdx }
-        })
-    }
-    const handleTextChange = (qIdx, text) => {
-        setResponse({
-            ...response,
-            [qIdx]: { text }
+            [qIdx]: text
         })
     }
     const handleSubmit = async (event) => {
         event.preventDefault()
-        dispatch(addResponse(response, survey))
+        try {
+            dispatch(respondSurvey(id, response))
+        } catch (e) {
+            console.log(e)
+        }
     }
     return (
         <Container>
             <Row>
                 <Col>
                     <h2>{survey.title}</h2>
+                    <p>{survey.description}</p>
                     <Form onSubmit={handleSubmit}>
                         <ListGroup>
-                            {survey.questions.map((question, qIdx) => (
-                                <ListGroupItem key={qIdx}>
-                                    <strong>{question.text}</strong>
-                                    {question.options.length > 0 ? (
-                                        question.options.map((option, oIdx) => (
-                                            <Form.Check
-                                                id={`option-${oIdx}`}
-                                                key={oIdx}
-                                                label={option.text}
-                                                name={`question-${qIdx}`}
-                                                onChange={() => handleOptionChange(qIdx, oIdx)}
-                                                type="radio"
-                                            />
-                                        ))
-                                    ) : (
-                                        <Form.Group controlId={`question-${qIdx}`}>
+                            {survey.questions.map((question) => (
+                                <ListGroupItem key={question.id}>
+                                    <Form.Group>
+                                        <Form.Label>{question.question}</Form.Label>
+                                        {question.options.length > 0 ? (
+                                            question.options.map((option, i) => (
+                                                <Form.Check
+                                                    key={i}
+                                                    label={option}
+                                                    name={question.id}
+                                                    onChange={(e) => handleChange(question.id, e.target.value)}
+                                                    type="radio"
+                                                    value={option}
+                                                />
+                                            ))
+                                        ) : (
                                             <Form.Control
                                                 as="textarea"
-                                                onChange={(e) => handleTextChange(qIdx, e.target.value)}
+                                                onChange={(e) => handleChange(question.id, e.target.value)}
                                                 placeholder="Enter here"
                                                 rows={3}
                                             />
-                                        </Form.Group>
-                                    )}
+                                        )}
+                                    </Form.Group>
                                 </ListGroupItem>
                             ))}
                         </ListGroup>

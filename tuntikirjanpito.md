@@ -13,5 +13,6 @@
 | 21.9. | 2    | listing open and closed surveys on the home page, improving the survey listing ui, making sure users cannot send a response to a closed survey |
 | 21.9. | 2    | separating survey into response and results components, figuring out how to make survey results view |
 | 21.9. | 4    | reworking survey schemas and backend to be more straightforward and less unnecessarily complex |
+| 22.9. | 2.5  | updating frontend to work with the reworked backend |
 |       |      | |
-| yht   | 34   | |
+| yht   | 36.5 | |

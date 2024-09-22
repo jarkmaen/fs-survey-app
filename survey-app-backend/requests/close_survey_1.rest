@@ -1,2 +1,2 @@
-PATCH http://localhost:3001/api/surveys/66ef15ae672a6056d38785ad/close
+PATCH http://localhost:3001/api/surveys/66f002a5457c5f9e4fadb44b/close
 Content-Type: application/json

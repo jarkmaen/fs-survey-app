@@ -14,7 +14,7 @@ const slice = createSlice({
 const { set } = slice.actions
 
 export const initUsers = () => {
-    return async dispatch => {
+    return async (dispatch) => {
         const data = await usersService.getAll()
         dispatch(set(data))
     }

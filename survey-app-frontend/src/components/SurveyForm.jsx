@@ -6,48 +6,33 @@ import { useState } from 'react'
 
 const SurveyForm = () => {
     const [title, setTitle] = useState('')
-    const [questions, setQuestions] = useState([
-        {
-            text: '',
-            options: [{ text: '' }],
-            isOther: false
-        }
-    ])
+    const [description, setDescription] = useState('')
+    const [questions, setQuestions] = useState([{ question: '', options: [''] }])
     const dispatch = useDispatch()
     const addOption = (qIdx) => {
-        setQuestions((current) => {
-            const updated = [...current]
-            updated[qIdx].options.push({ text: '' })
-            return updated
-        })
+        const updated = [...questions]
+        updated[qIdx].options.push('')
+        setQuestions(updated)
     }
     const addQuestion = () => {
-        setQuestions((current) => [
-            ...current,
-            { text: '', options: [{ text: '' }], isOther: false }
-        ])
+        setQuestions([...questions, { question: '', options: [''] }])
     }
-    const handleChange = (qIdx, oIdx, e) => {
-        setQuestions((current) => {
-            const updated = [...current]
-            if (oIdx === null) {
-                updated[qIdx].text = e.target.value
-            } else {
-                updated[qIdx].options[oIdx].text = e.target.value
-            }
-            return updated
-        })
+    const handleChange = (event, oIdx, qIdx) => {
+        const updated = [...questions]
+        if (oIdx === null) {
+            updated[qIdx].question = event.target.value
+        } else {
+            updated[qIdx].options[oIdx] = event.target.value
+        }
+        setQuestions(updated)
     }
-    const handleOther = (qIdx, e) => {
-        setQuestions((current) => {
-            const updated = [...current]
-            updated[qIdx].isOther = e.target.checked
-            return updated
-        })
-    }
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        dispatch(addSurvey({ title, questions }))
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+        try {
+            dispatch(addSurvey({ title, description, questions }))
+        } catch (e) {
+            console.log(e)
+        }
     }
     return (
         <Container>
@@ -61,16 +46,26 @@ const SurveyForm = () => {
                         value={title}
                     />
                 </Form.Group>
-                {questions.map((question, qIdx) => (
-                    <Question
-                        addOption={addOption}
-                        handleChange={handleChange}
-                        handleOther={handleOther}
-                        key={qIdx}
-                        qIdx={qIdx}
-                        question={question}
+                <Form.Group className="mb-3">
+                    <Form.Label>Survey Description:</Form.Label>
+                    <Form.Control
+                        onChange={({ target }) => setDescription(target.value)}
+                        required
+                        type="text"
+                        value={description}
                     />
-                ))}
+                </Form.Group>
+                {questions.map((question, qIdx) => {
+                    return (
+                        <Question
+                            addOption={addOption}
+                            handleChange={handleChange}
+                            key={qIdx}
+                            qIdx={qIdx}
+                            question={question}
+                        />
+                    )
+                })}
                 <div className="mb-3">
                     <Button onClick={addQuestion} variant="secondary">
                         Add Question
