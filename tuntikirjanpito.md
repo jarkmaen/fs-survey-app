@@ -14,5 +14,6 @@
 | 21.9. | 2    | separating survey into response and results components, figuring out how to make survey results view |
 | 21.9. | 4    | reworking survey schemas and backend to be more straightforward and less unnecessarily complex |
 | 22.9. | 2.5  | updating frontend to work with the reworked backend |
+| 26.9. | 1    | adding a basic survey results view, surveys can now be closed from the frontend |
 |       |      | |
-| yht   | 36.5 | |
+| yht   | 37.5 | |

@@ -26,6 +26,13 @@ export const addSurvey = (survey) => {
     }
 }
 
+export const closeSurvey = (id) => {
+    return async (dispatch) => {
+        const data = await surveysService.close(id)
+        dispatch(alter(data))
+    }
+}
+
 export const initSurveys = () => {
     return async (dispatch) => {
         const data = await surveysService.getAll()

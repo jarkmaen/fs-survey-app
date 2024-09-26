@@ -22,7 +22,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZWZkNzUyN
         },
         {
             "id": "66efd75f58ddb6012bc99b80",
-            "response": "5"
+            "response": "too light"
         },
         {
             "id": "66efd75f58ddb6012bc99b81",

@@ -1,13 +1,21 @@
 import { Button, Card, Col, Row } from 'react-bootstrap'
+import { closeSurvey } from '../reducers/surveys'
 import { FaClipboardList, FaClock } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 
 const SurveyList = ({ closed }) => {
+    const dispatch = useDispatch()
     const surveys = useSelector(({ surveys }) => surveys)
     const filteredSurveys = surveys.filter((survey) => survey.closed === closed)
-    const closeSurvey = (title) => {
-        console.log(`closing survey ${title}`)
+    const handleCloseSurvey = async (event, id) => {
+        event.preventDefault()
+        try {
+            dispatch(closeSurvey(id))
+        } catch (e) {
+            console.log(e)
+        }
     }
     return (
         <div>
@@ -39,7 +47,7 @@ const SurveyList = ({ closed }) => {
                                         {!closed && (
                                             <Button
                                                 className="flex-grow-1 mx-1"
-                                                onClick={() => closeSurvey(survey.title)}
+                                                onClick={(event) => handleCloseSurvey(event, survey.id)}
                                                 variant="danger"
                                             >
                                                 Close Survey

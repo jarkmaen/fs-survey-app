@@ -7,6 +7,11 @@ const headers = {
     Authorization: storageService.loadUser() ? `Bearer ${storageService.loadUser().token}` : null
 }
 
+const close = async (id) => {
+    const request = await axios.patch(`${baseUrl}/${id}/close`)
+    return request.data
+}
+
 const create = async (surveyData) => {
     const request = await axios.post(baseUrl, surveyData)
     return request.data
@@ -22,4 +27,4 @@ const respond = async (id, response) => {
     return request.data
 }
 
-export default { create, getAll, respond }
+export default { close, create, getAll, respond }
