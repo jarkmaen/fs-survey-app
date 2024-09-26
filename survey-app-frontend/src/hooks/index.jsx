@@ -1,17 +1,9 @@
 import { initSurveys } from '../reducers/surveys'
 import { initUser, clearUser } from '../reducers/user'
 import { initUsers } from '../reducers/users'
+import { notify } from '../reducers/notification'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
-
-export const useInitialization = () => {
-    const dispatch = useDispatch()
-    return () => {
-        dispatch(initSurveys())
-        dispatch(initUser())
-        dispatch(initUsers())
-    }
-}
 
 export const useClearUser = () => {
     const dispatch = useDispatch()
@@ -29,5 +21,21 @@ export const useField = (type) => {
         type,
         value,
         onChange
+    }
+}
+
+export const useInitialization = () => {
+    const dispatch = useDispatch()
+    return () => {
+        dispatch(initSurveys())
+        dispatch(initUser())
+        dispatch(initUsers())
+    }
+}
+
+export const useNotification = () => {
+    const dispatch = useDispatch()
+    return (message, type = 'info') => {
+        dispatch(notify(message, type))
     }
 }

@@ -15,5 +15,7 @@
 | 21.9. | 4    | reworking survey schemas and backend to be more straightforward and less unnecessarily complex |
 | 22.9. | 2.5  | updating frontend to work with the reworked backend |
 | 26.9. | 1    | adding a basic survey results view, surveys can now be closed from the frontend |
+| 26.9. | 3    | learning more about styling and making some of the components look a bit more professional |
+| 26.9. | 1.5  | setting up notification system for different actions |
 |       |      | |
-| yht   | 37.5 | |
+| yht   | 42   | |

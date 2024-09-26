@@ -2,6 +2,7 @@ import loginService from '../services/login'
 import storageService from '../services/storage'
 import usersService from '../services/users'
 import { createSlice } from '@reduxjs/toolkit'
+import { notify } from './notification'
 
 const initialState = null
 
@@ -40,8 +41,9 @@ export const loginUser = (credentials) => {
             const user = await loginService.login(credentials)
             storageService.saveUser(user)
             dispatch(set(user))
-        } catch (e) {
-            console.log(e)
+            dispatch(notify('You have successfully logged in!'))
+        } catch {
+            dispatch(notify('Incorrect username or password.', 'danger'))
         }
     }
 }
