@@ -1,5 +1,6 @@
-import '../app.css'
+import '../styles.css'
 import { Button, Form } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import { registerUser } from '../reducers/user'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
@@ -18,15 +19,14 @@ const RegisterForm = () => {
         }
     }
     return (
-        <div>
+        <div className="auth-container">
             <Form className="auth-form" onSubmit={handleSubmit}>
-                <h1 className="fw-bold text-center">Welcome</h1>
-                <h2 className="text-center">Register to application</h2>
+                <h3 className="fw-bold mb-3 text-center">Welcome!</h3>
                 <Form.Group className="mb-3">
                     <Form.Label>Name</Form.Label>
                     <Form.Control
                         onChange={({ target }) => setName(target.value)}
-                        placeholder="Enter your name"
+                        placeholder="Please enter your name"
                         type="text"
                         value={name}
                     />
@@ -35,7 +35,7 @@ const RegisterForm = () => {
                     <Form.Label>Username</Form.Label>
                     <Form.Control
                         onChange={({ target }) => setUsername(target.value)}
-                        placeholder="Enter username"
+                        placeholder="Please enter your username"
                         type="text"
                         value={username}
                     />
@@ -44,14 +44,19 @@ const RegisterForm = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control
                         onChange={({ target }) => setPassword(target.value)}
-                        placeholder="Password"
+                        placeholder="Please enter your password"
                         type="password"
                         value={password}
                     />
                 </Form.Group>
-                <Button type="submit" variant="primary">
-                    Submit
+                <Button className="mb-3 mt-3 w-100" type="submit" variant="primary">
+                    Sign up
                 </Button>
+                <div className="text-center mt-3">
+                    <p>
+                        Already have an account? <Link to="/login">Log in</Link>
+                    </p>
+                </div>
             </Form>
         </div>
     )

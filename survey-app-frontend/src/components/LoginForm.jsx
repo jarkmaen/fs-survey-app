@@ -1,5 +1,6 @@
-import '../app.css'
+import '../styles.css'
 import { Button, Form } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import { loginUser } from '../reducers/user'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
@@ -17,15 +18,14 @@ const LoginForm = () => {
         }
     }
     return (
-        <div>
+        <div className="auth-container">
             <Form className="auth-form" onSubmit={handleSubmit}>
-                <h1 className="fw-bold text-center">Welcome</h1>
-                <h2 className="text-center">Log in to application</h2>
+                <h3 className="fw-bold mb-3 text-center">Welcome back!</h3>
                 <Form.Group className="mb-3">
                     <Form.Label>Username</Form.Label>
                     <Form.Control
                         onChange={({ target }) => setUsername(target.value)}
-                        placeholder="Enter username"
+                        placeholder="Please enter your username"
                         type="username"
                         value={username}
                     />
@@ -34,14 +34,19 @@ const LoginForm = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control
                         onChange={({ target }) => setPassword(target.value)}
-                        placeholder="Password"
+                        placeholder="Please enter your password"
                         type="password"
                         value={password}
                     />
                 </Form.Group>
-                <Button type="submit" variant="primary">
-                    Submit
+                <Button className="mb-3 mt-3 w-100" type="submit" variant="primary">
+                    Log in
                 </Button>
+                <div className="text-center mt-3">
+                    <p>
+                        Don&apos;t have an account? <Link to="/signup">Sign up</Link>
+                    </p>
+                </div>
             </Form>
         </div>
     )
