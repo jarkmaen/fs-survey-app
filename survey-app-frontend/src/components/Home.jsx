@@ -1,23 +1,25 @@
 import SurveyList from './SurveyList'
-import { Col, Container, Row } from 'react-bootstrap'
+import SurveyNav from './SurveyNav'
+import { Container } from 'react-bootstrap'
+import { useState } from 'react'
 
 const Home = () => {
+    const [activeTab, setActiveTab] = useState('active')
     return (
-        <Container>
-            <Row>
-                <Col>
-                    <h2>Active Surveys</h2>
-                    <SurveyList closed={false} />
-                </Col>
-            </Row>
-            <hr />
-            <Row>
-                <Col>
-                    <h2>Closed Surveys</h2>
-                    <SurveyList closed={true} />
-                </Col>
-            </Row>
-        </Container>
+        <div>
+            <SurveyNav activeTab={activeTab} setActiveTab={setActiveTab} />
+            <Container>
+                {activeTab === 'active' ? (
+                    <div>
+                        <SurveyList closed={false} />
+                    </div>
+                ) : (
+                    <div>
+                        <SurveyList closed={true} />
+                    </div>
+                )}
+            </Container>
+        </div>
     )
 }
 
