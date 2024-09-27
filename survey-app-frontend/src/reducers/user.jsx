@@ -42,8 +42,10 @@ export const loginUser = (credentials) => {
             storageService.saveUser(user)
             dispatch(set(user))
             dispatch(notify('You have successfully logged in!'))
+            return { success: true }
         } catch {
             dispatch(notify('Incorrect username or password.', 'danger'))
+            return { success: false }
         }
     }
 }
@@ -54,8 +56,11 @@ export const registerUser = (userData) => {
             const user = await usersService.register(userData)
             storageService.saveUser(user)
             dispatch(set(user))
-        } catch (e) {
-            console.log(e)
+            dispatch(notify('Your registration has been successful!'))
+            return { success: true }
+        } catch {
+            dispatch(notify('Failed to register.', 'danger'))
+            return { success: false }
         }
     }
 }

@@ -1,21 +1,31 @@
 import '../styles.css'
 import { Button, Form } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { registerFormValidation } from '../utils/validation'
 import { registerUser } from '../reducers/user'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 
 const RegisterForm = () => {
+    const [errors, setErrors] = useState({})
     const [name, setName] = useState('')
-    const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [username, setUsername] = useState('')
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const handleSubmit = async (event) => {
         event.preventDefault()
-        try {
-            dispatch(registerUser({ name, username, password }))
-        } catch (e) {
-            console.log(e)
+        const errors = registerFormValidation({ name, username, password })
+        setErrors(errors)
+        if (Object.keys(errors).length === 0) {
+            try {
+                const result = await dispatch(registerUser({ name, username, password }))
+                if (result.success) {
+                    navigate('/')
+                }
+            } catch (e) {
+                console.log(e)
+            }
         }
     }
     return (
@@ -25,29 +35,35 @@ const RegisterForm = () => {
                 <Form.Group className="mb-3">
                     <Form.Label>Name</Form.Label>
                     <Form.Control
+                        isInvalid={!!errors.name}
                         onChange={({ target }) => setName(target.value)}
                         placeholder="Please enter your name"
                         type="text"
                         value={name}
                     />
+                    <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Username</Form.Label>
                     <Form.Control
+                        isInvalid={!!errors.username}
                         onChange={({ target }) => setUsername(target.value)}
                         placeholder="Please enter your username"
                         type="text"
                         value={username}
                     />
+                    <Form.Control.Feedback type="invalid">{errors.username}</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Password</Form.Label>
                     <Form.Control
+                        isInvalid={!!errors.password}
                         onChange={({ target }) => setPassword(target.value)}
                         placeholder="Please enter your password"
                         type="password"
                         value={password}
                     />
+                    <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
                 </Form.Group>
                 <Button className="mb-3 mt-3 w-100" type="submit" variant="primary">
                     Sign up

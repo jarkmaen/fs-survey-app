@@ -17,5 +17,6 @@
 | 26.9. | 1    | adding a basic survey results view, surveys can now be closed from the frontend |
 | 26.9. | 3    | learning more about styling and making some of the components look a bit more professional |
 | 26.9. | 1.5  | setting up notification system for different actions |
+| 27.9. | 2.5  | implementing automatic redirection to the front page after successful login and registration, adding form validation for login and signup forms in the frontend |
 |       |      | |
-| yht   | 42   | |
+| yht   | 44.5 | |
