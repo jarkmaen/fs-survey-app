@@ -1,4 +1,5 @@
 POST http://localhost:3001/api/surveys
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZjlhOWMwOWI0NWM1OTkzZThkZGJmZCIsInVzZXJuYW1lIjoidGVzdHVzZXIiLCJpYXQiOjE3Mjc2Mzc5NTZ9.WM-19Prlm2ZFtyDS7WKFbi61BEGaBL5XFkJgmvm0cIs
 Content-Type: application/json
 
 {

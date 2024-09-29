@@ -19,5 +19,6 @@
 | 26.9. | 1.5  | setting up notification system for different actions |
 | 27.9. | 2.5  | implementing automatic redirection to the front page after successful login and registration, adding form validation for login and signup forms in the frontend |
 | 27.9. | 4    | improving the ui a lot, new navbar, new survey tab navigation, new survey cards, new create survey button |
+| 29.9. | 2    | making sure only the creator of the survey can close their own surveys |
 |       |      | |
-| yht   | 48.5 | |
+| yht   | 50.5 | |

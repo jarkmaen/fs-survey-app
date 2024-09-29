@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 const SurveyList = ({ closed }) => {
     const dispatch = useDispatch()
     const surveys = useSelector(({ surveys }) => surveys)
+    const user = useSelector(({ user }) => user)
     const filteredSurveys = surveys.filter((survey) => survey.closed === closed)
     const handleCloseSurvey = async (event, id) => {
         event.preventDefault()
@@ -40,7 +41,7 @@ const SurveyList = ({ closed }) => {
                                 >
                                     {closed ? 'View Results' : 'Take Survey'}
                                 </Button>
-                                {!closed && (
+                                {!closed && user && survey.user.username === user.username && (
                                     <Button
                                         className="flex-grow-1 mx-1 survey-card-button"
                                         onClick={(event) => handleCloseSurvey(event, survey.id)}

@@ -8,12 +8,12 @@ const headers = {
 }
 
 const close = async (id) => {
-    const request = await axios.patch(`${baseUrl}/${id}/close`)
+    const request = await axios.patch(`${baseUrl}/${id}/close`, null, { headers })
     return request.data
 }
 
 const create = async (surveyData) => {
-    const request = await axios.post(baseUrl, surveyData)
+    const request = await axios.post(baseUrl, surveyData, { headers })
     return request.data
 }
 

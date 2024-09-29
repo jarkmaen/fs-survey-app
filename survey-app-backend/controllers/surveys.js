@@ -4,20 +4,26 @@ const Survey = require('../models/survey')
 const { userExtractor } = require('../utils/middleware')
 
 router.get('/', async (request, response) => {
-    const surveys = await Survey.find({})
+    const surveys = await Survey.find({}).populate('user', { name: 1, username: 1 })
     response.json(surveys)
 })
 
-router.patch('/:id/close', async (request, response) => {
+router.patch('/:id/close', userExtractor, async (request, response) => {
     const { id } = request.params
-    const survey = await Survey.findByIdAndUpdate(id, { closed: true }, { new: true })
+    const survey = await Survey.findById(id)
     if (!survey) {
         return response.status(404).send({ error: 'survey not found' })
     }
-    response.json(survey)
+    const user = request.user
+    if (!user || survey.user.toString() !== user.id.toString()) {
+        return response.status(401).send({ error: 'operation not permitted' })
+    }
+    survey.closed = true
+    const closedSurvey = await survey.save()
+    response.json(closedSurvey)
 })
 
-router.post('/', async (request, response) => {
+router.post('/', userExtractor, async (request, response) => {
     const { title, description, questions } = request.body
     const surveyQuestions = questions.map(
         (q) =>
@@ -33,7 +39,13 @@ router.post('/', async (request, response) => {
         description,
         questions: surveyQuestions
     })
-    const savedSurvey = await survey.save()
+    const user = request.user
+    if (!user) {
+        return response.status(401).json({ error: 'operation not permitted' })
+    }
+    survey.user = user.id
+    let savedSurvey = await survey.save()
+    savedSurvey = await Survey.findById(savedSurvey.id).populate('user')
     surveyQuestions.forEach((q) => (q.surveyId = survey.id))
     await Promise.all(surveyQuestions.map((q) => q.save()))
     response.status(201).json(savedSurvey)
