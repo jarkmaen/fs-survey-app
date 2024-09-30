@@ -29,6 +29,8 @@ router.post('/', userExtractor, async (request, response) => {
         (q) =>
             new Question({
                 question: q.question,
+                type: q.type,
+                hasOther: q.hasOther,
                 options: q.options,
                 responses: [],
                 surveyId: null

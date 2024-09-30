@@ -5,6 +5,14 @@ const questionSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    type: {
+        type: String,
+        required: true
+    },
+    hasOther: {
+        type: Boolean,
+        default: false
+    },
     options: [String],
     responses: [{}],
     surveyId: String

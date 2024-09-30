@@ -20,5 +20,6 @@
 | 27.9. | 2.5  | implementing automatic redirection to the front page after successful login and registration, adding form validation for login and signup forms in the frontend |
 | 27.9. | 4    | improving the ui a lot, new navbar, new survey tab navigation, new survey cards, new create survey button |
 | 29.9. | 2    | making sure only the creator of the survey can close their own surveys |
+| 30.9. | 6.5  | adding different survey question types, questions can have "Other" as an option, survey creation ui looks great now |
 |       |      | |
-| yht   | 50.5 | |
+| yht   | 57   | |

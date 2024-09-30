@@ -1,5 +1,5 @@
 POST http://localhost:3001/api/surveys
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZjlhOWMwOWI0NWM1OTkzZThkZGJmZCIsInVzZXJuYW1lIjoidGVzdHVzZXIiLCJpYXQiOjE3Mjc2Mzc5NTZ9.WM-19Prlm2ZFtyDS7WKFbi61BEGaBL5XFkJgmvm0cIs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZmE3MmRjYzE1Yzc5NzMzZDI2ODdjOSIsInVzZXJuYW1lIjoidGVzdHVzZXIiLCJpYXQiOjE3Mjc2ODk0NDN9.9XejxvwlCVzcObWT1qImemv06gGDvjj5IETrAXmCKoQ
 Content-Type: application/json
 
 {
@@ -8,27 +8,32 @@ Content-Type: application/json
     "questions": [
         {
             "question": "The learning objectives were clear to me.",
+            "type": "multiple choice",
             "options": ["1", "2", "3", "4", "5", "N/A"]
         },
         {
             "question": "The course activities supported my learning.",
+            "type": "multiple choice",
             "options": ["1", "2", "3", "4", "5", "N/A"]
         },
         {
             "question": "The course materials supported my learning.",
+            "type": "multiple choice",
             "options": ["1", "2", "3", "4", "5", "N/A"]
         },
         {
             "question": "The methods used to assess the course measure my learning.",
+            "type": "multiple choice",
             "options": ["1", "2", "3", "4", "5", "N/A"]
         },
         {
             "question": "The workload relative to course credits was.",
+            "type": "multiple choice",
             "options": ["too heavy", "somewhat too heavy", "appropriate", "somewhat too light", "too light"]
         },
         {
             "question": "Any additional comments or suggestions.",
-            "options": []
+            "type": "comment box"
         }
     ]
 }

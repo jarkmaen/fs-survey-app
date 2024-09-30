@@ -70,6 +70,36 @@
     margin-top: 0.5rem;
 }
 
+.editable-field {
+    background: transparent;
+    border: 2px solid transparent;
+    padding: 2px;
+}
+
+.editable-field-title {
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+.editable-field:hover {
+    background-color: var(--hover-over-color);
+    transition: none;
+}
+
+.editable-field:focus {
+    background-color: white;
+    border-color: var(--primary-color);
+    box-shadow: none;
+}
+
+.editable-field.edited {
+    color: black;
+}
+
+.editable-field::placeholder {
+    color: var(--placeholder-color);
+}
+
 .navbar {
     background-color: white;
     border-bottom: 1px solid var(--seperator-color);
@@ -92,6 +122,25 @@
     border-color: #dee0e2;
     border-radius: 20px;
     padding: 1rem;
+}
+
+.question-form {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 16px;
+    padding: 16px;
+}
+
+.question-form-icon {
+    border-color: #bdbdbd;
+    transform: scale(1.5);
+}
+
+.question-form-text {
+    color: var(--primary-color);
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .survey-card-button {
@@ -138,6 +187,8 @@
 :root {
     --background-color: #f5f7fb;
     --danger-color: #d11736;
+    --hover-over-color: #dde2ed;
+    --placeholder-color: #909090;
     --primary-color: #164ed0;
     --seconday-text-color: #747474;
     --seperator-color: #d2dff8;

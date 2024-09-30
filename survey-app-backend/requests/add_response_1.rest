@@ -1,31 +1,31 @@
-POST http://localhost:3001/api/surveys/66f9a9e39b45c5993e8ddc07/responses
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZjlhOWMwOWI0NWM1OTkzZThkZGJmZCIsInVzZXJuYW1lIjoidGVzdHVzZXIiLCJpYXQiOjE3Mjc2Mzc5NTZ9.WM-19Prlm2ZFtyDS7WKFbi61BEGaBL5XFkJgmvm0cIs
+POST http://localhost:3001/api/surveys/66fa7390a9853092287e5784/responses
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZmE3MmRjYzE1Yzc5NzMzZDI2ODdjOSIsInVzZXJuYW1lIjoidGVzdHVzZXIiLCJpYXQiOjE3Mjc2ODk0NDN9.9XejxvwlCVzcObWT1qImemv06gGDvjj5IETrAXmCKoQ
 Content-Type: application/json
 
 {
     "questions": [
         {
-            "id": "66f9a9e39b45c5993e8ddc01",
+            "id": "66fa7390a9853092287e577e",
             "response": "1"
         },
         {
-            "id": "66f9a9e39b45c5993e8ddc02",
+            "id": "66fa7390a9853092287e577f",
             "response": "2"
         },
         {
-            "id": "66f9a9e39b45c5993e8ddc03",
+            "id": "66fa7390a9853092287e5780",
             "response": "3"
         },
         {
-            "id": "66f9a9e39b45c5993e8ddc04",
+            "id": "66fa7390a9853092287e5781",
             "response": "4"
         },
         {
-            "id": "66f9a9e39b45c5993e8ddc05",
+            "id": "66fa7390a9853092287e5782",
             "response": "too light"
         },
         {
-            "id": "66f9a9e39b45c5993e8ddc06",
+            "id": "66fa7390a9853092287e5783",
             "response": "Lorem ipsum dolor sit amet"
         }
     ]
