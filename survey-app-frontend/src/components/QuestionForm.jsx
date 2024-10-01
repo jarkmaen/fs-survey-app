@@ -1,42 +1,38 @@
 import EditableField from './EditableField'
+import FormCheckIcon from './FormCheckIcon'
+import Option from './Option'
 import QuestionType from '../constants/enums'
-import { Col, Form, Row } from 'react-bootstrap'
-import { Option, OtherOption } from './Option'
+import { Button, Col, Form, Row } from 'react-bootstrap'
+import { FaRegTrashCan } from 'react-icons/fa6'
 import { useState } from 'react'
 
-const QuestionForm = ({ addOption, handleChange, qIdx, question }) => {
-    const [type, setType] = useState(QuestionType.MULTIPLE_CHOICE)
+const QuestionForm = ({ addOption, deleteOption, deleteQuestion, errors = {}, handleChange, qIdx, question }) => {
     const [otherAdded, setOtherAdded] = useState(false)
-    const handleAddOption = () => {
-        addOption(qIdx)
+    const [type, setType] = useState(QuestionType.MULTIPLE_CHOICE)
+    const handleDeleteOption = (isOther, oIdx, qIdx) => {
+        deleteOption(isOther, oIdx, qIdx)
+        setOtherAdded(false)
     }
     const handleAddOther = () => {
         addOption(qIdx, true)
         setOtherAdded(true)
     }
     const handleTypeChange = (event) => {
-        handleChange(event, 0, qIdx, true)
-        setType(event.target.value)
+        const value = event.target.value
+        handleChange({ target: { name: 'type', value } }, null, qIdx)
+        setType(value)
     }
     return (
         <div className="question-form" key={qIdx}>
             <EditableField
+                error={errors.question}
                 placeholder="Question"
-                setValue={(value) => handleChange({ target: { value } }, null, qIdx)}
-                value={question.text}
+                setValue={(value) => handleChange({ target: { name: 'question', value } }, null, qIdx)}
+                value={question.question}
             />
-            <Form.Group as={Row} className="mb-3">
-                <Col sm="12">
-                    <Form.Select onChange={handleTypeChange} value={type}>
-                        <option value={QuestionType.MULTIPLE_CHOICE}>Multiple Choice</option>
-                        <option value={QuestionType.CHECKBOX}>Checkbox</option>
-                        <option value={QuestionType.COMMENT_BOX}>Comment Box</option>
-                    </Form.Select>
-                </Col>
-            </Form.Group>
             {type === QuestionType.COMMENT_BOX ? (
                 <Form.Group as={Row} className="mb-3">
-                    <Col sm="12">
+                    <Col>
                         <Form.Control as="textarea" readOnly rows={3} />
                     </Col>
                 </Form.Group>
@@ -44,7 +40,9 @@ const QuestionForm = ({ addOption, handleChange, qIdx, question }) => {
                 <div>
                     {question.options.map((option, oIdx) => (
                         <Option
+                            error={errors.options ? errors.options[oIdx] : ''}
                             handleChange={handleChange}
+                            handleDeleteOption={handleDeleteOption}
                             key={oIdx}
                             oIdx={oIdx}
                             option={option}
@@ -52,17 +50,13 @@ const QuestionForm = ({ addOption, handleChange, qIdx, question }) => {
                             type={type}
                         />
                     ))}
-                    {otherAdded && <OtherOption type={type} />}
+                    {otherAdded && (
+                        <Option handleDeleteOption={handleDeleteOption} isOther={true} qIdx={qIdx} type={type} />
+                    )}
                     <Form.Group as={Row} className="mb-3">
-                        <Col sm="1" className="align-items-center d-flex justify-content-center">
-                            <Form.Check
-                                className="question-form-icon"
-                                disabled
-                                type={type === QuestionType.MULTIPLE_CHOICE ? 'radio' : 'checkbox'}
-                            />
-                        </Col>
+                        <FormCheckIcon type={type} />
                         <Col sm="11">
-                            <span className="question-form-text" onClick={handleAddOption}>
+                            <span className="question-form-text" onClick={() => addOption(qIdx)}>
                                 Add option
                             </span>
                             {!otherAdded && (
@@ -77,6 +71,20 @@ const QuestionForm = ({ addOption, handleChange, qIdx, question }) => {
                     </Form.Group>
                 </div>
             )}
+            <Form.Group as={Row}>
+                <Col sm={4}>
+                    <Form.Select onChange={handleTypeChange} value={type}>
+                        <option value={QuestionType.CHECKBOX}>Checkbox</option>
+                        <option value={QuestionType.COMMENT_BOX}>Comment Box</option>
+                        <option value={QuestionType.MULTIPLE_CHOICE}>Multiple Choice</option>
+                    </Form.Select>
+                </Col>
+                <Col className="text-end" sm={8}>
+                    <Button className="question-form-delete" onClick={() => deleteQuestion(qIdx)} variant="link">
+                        <FaRegTrashCan /> Delete
+                    </Button>
+                </Col>
+            </Form.Group>
         </div>
     )
 }

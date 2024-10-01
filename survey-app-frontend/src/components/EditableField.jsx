@@ -1,7 +1,7 @@
 import { Form } from 'react-bootstrap'
 import { useState } from 'react'
 
-const EditableField = ({ placeholder, setValue, value }) => {
+const EditableField = ({ error, placeholder, setValue, value }) => {
     const [isEdited, setIsEdited] = useState(false)
     const handleChange = (event) => {
         setValue(event.target.value)
@@ -14,11 +14,13 @@ const EditableField = ({ placeholder, setValue, value }) => {
         <Form.Group className={marginBottom}>
             <Form.Control
                 className={`editable-field ${fontSize} ${isEdited ? 'edited' : ''}`}
+                isInvalid={!!error}
                 onChange={handleChange}
                 placeholder={placeholder}
                 type="text"
                 value={value}
             />
+            <Form.Control.Feedback type="invalid">{error}</Form.Control.Feedback>
         </Form.Group>
     )
 }

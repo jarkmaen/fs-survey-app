@@ -1,41 +1,31 @@
 import EditableField from './EditableField'
-import QuestionType from '../constants/enums'
-import { Col, Form, Row } from 'react-bootstrap'
+import FormCheckIcon from './FormCheckIcon'
+import { Button, Col, Form, Row } from 'react-bootstrap'
+import { LiaTimesSolid } from 'react-icons/lia'
 
-const Option = ({ handleChange, oIdx, option, qIdx, type }) => (
+const Option = ({ error, handleChange, handleDeleteOption, isOther, oIdx, option, qIdx, type }) => (
     <Form.Group as={Row} className="mb-3" key={oIdx}>
-        <Col className="align-items-center d-flex justify-content-center" sm="1">
-            {type === QuestionType.MULTIPLE_CHOICE ? (
-                <Form.Check className="question-form-icon" disabled type="radio" />
+        <FormCheckIcon type={type} />
+        <Col className="d-flex align-items-center" sm={10}>
+            {isOther ? (
+                <span className="question-form-other">Other...</span>
             ) : (
-                <Form.Check className="question-form-icon" disabled type="checkbox" />
+                <div className="flex-grow-1">
+                    <EditableField
+                        error={error}
+                        placeholder="Option"
+                        setValue={(value) => handleChange({ target: { name: 'option', value } }, oIdx, qIdx)}
+                        value={option}
+                    />
+                </div>
             )}
         </Col>
-        <Col sm="11">
-            <EditableField
-                placeholder="Option"
-                setValue={(value) => handleChange({ target: { value } }, oIdx, qIdx)}
-                value={option.text}
-            />
+        <Col className="align-items-center d-flex justify-content-center" sm={1}>
+            <Button onClick={() => handleDeleteOption(isOther, oIdx, qIdx)} variant="link">
+                <LiaTimesSolid className="question-form-remove" />
+            </Button>
         </Col>
     </Form.Group>
 )
-
-const OtherOption = ({ type }) => (
-    <Form.Group as={Row} className="mb-3">
-        <Col className="align-items-center d-flex justify-content-center" sm="1">
-            {type === QuestionType.MULTIPLE_CHOICE ? (
-                <Form.Check className="question-form-icon" type="radio" disabled />
-            ) : (
-                <Form.Check className="question-form-icon" type="checkbox" disabled />
-            )}
-        </Col>
-        <Col sm="11">
-            <span style={{ color: '#70757a', padding: '4px' }}>Other...</span>
-        </Col>
-    </Form.Group>
-)
-
-export { Option, OtherOption }
 
 export default Option

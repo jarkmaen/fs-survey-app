@@ -21,5 +21,6 @@
 | 27.9. | 4    | improving the ui a lot, new navbar, new survey tab navigation, new survey cards, new create survey button |
 | 29.9. | 2    | making sure only the creator of the survey can close their own surveys |
 | 30.9. | 6.5  | adding different survey question types, questions can have "Other" as an option, survey creation ui looks great now |
+| 1.10. | 5.5  | adding survey form validation in the frontend, adding the possibility to remove options and questions in the survey form, adding various styling improvements |
 |       |      | |
-| yht   | 57   | |
+| yht   | 62.5 | |
