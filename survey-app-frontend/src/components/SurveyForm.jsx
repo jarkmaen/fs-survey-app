@@ -54,13 +54,19 @@ const SurveyForm = () => {
         } else if (name === 'question') {
             updated[qIdx].question = value
         } else if (name === 'type') {
-            updated[qIdx].type = event.target.value
+            if (value === QuestionType.COMMENT_BOX) {
+                updated[qIdx].options = []
+            } else {
+                if (updated[qIdx].type === QuestionType.COMMENT_BOX) {
+                    updated[qIdx].options = ['']
+                }
+            }
+            updated[qIdx].type = value
         }
         setQuestions(updated)
     }
     const handleSubmit = async (event) => {
         event.preventDefault()
-        setErrors({})
         const errors = surveyFormValidation({ title, description, questions })
         setErrors(errors)
         if (Object.keys(errors).length === 0) {
@@ -97,13 +103,16 @@ const SurveyForm = () => {
                                 addOption={addOption}
                                 deleteOption={deleteOption}
                                 deleteQuestion={deleteQuestion}
-                                errors={errors.questions ? errors.questions[qIdx] : {}}
+                                errors={errors}
                                 handleChange={handleChange}
                                 key={qIdx}
                                 qIdx={qIdx}
                                 question={question}
                             />
                         ))}
+                        {questions.length === 0 && typeof errors.questions === 'string' && (
+                            <div className="mb-3 text-danger">{errors.questions}</div>
+                        )}
                         <div className="mb-3">
                             <button className="survey-form-button" onClick={addQuestion} type="button">
                                 Add Question

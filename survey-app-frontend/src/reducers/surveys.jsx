@@ -1,5 +1,6 @@
 import surveysService from '../services/surveys'
 import { createSlice } from '@reduxjs/toolkit'
+import { notify } from './notification'
 
 const slice = createSlice({
     name: 'surveys',
@@ -21,8 +22,15 @@ const { set, add, alter } = slice.actions
 
 export const addSurvey = (survey) => {
     return async (dispatch) => {
-        const data = await surveysService.create(survey)
-        dispatch(add(data))
+        try {
+            const data = await surveysService.create(survey)
+            dispatch(add(data))
+            dispatch(notify('Survey created successfully!'))
+            return { success: true }
+        } catch {
+            dispatch(notify('Failed to create survey.', 'danger'))
+            return { success: false }
+        }
     }
 }
 

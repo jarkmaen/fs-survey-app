@@ -6,12 +6,14 @@ import { Button, Col, Form, Row } from 'react-bootstrap'
 import { FaRegTrashCan } from 'react-icons/fa6'
 import { useState } from 'react'
 
-const QuestionForm = ({ addOption, deleteOption, deleteQuestion, errors = {}, handleChange, qIdx, question }) => {
+const QuestionForm = ({ addOption, deleteOption, deleteQuestion, errors, handleChange, qIdx, question }) => {
     const [otherAdded, setOtherAdded] = useState(false)
     const [type, setType] = useState(QuestionType.MULTIPLE_CHOICE)
     const handleDeleteOption = (isOther, oIdx, qIdx) => {
         deleteOption(isOther, oIdx, qIdx)
-        setOtherAdded(false)
+        if (isOther) {
+            setOtherAdded(false)
+        }
     }
     const handleAddOther = () => {
         addOption(qIdx, true)
@@ -25,7 +27,7 @@ const QuestionForm = ({ addOption, deleteOption, deleteQuestion, errors = {}, ha
     return (
         <div className="question-form" key={qIdx}>
             <EditableField
-                error={errors.question}
+                error={errors.questions && errors.questions[qIdx] && errors.questions[qIdx].text}
                 placeholder="Question"
                 setValue={(value) => handleChange({ target: { name: 'question', value } }, null, qIdx)}
                 value={question.question}
@@ -40,7 +42,13 @@ const QuestionForm = ({ addOption, deleteOption, deleteQuestion, errors = {}, ha
                 <div>
                     {question.options.map((option, oIdx) => (
                         <Option
-                            error={errors.options ? errors.options[oIdx] : ''}
+                            error={
+                                errors.questions &&
+                                errors.questions[qIdx] &&
+                                errors.questions[qIdx].options &&
+                                errors.questions[qIdx].options[oIdx] &&
+                                errors.questions[qIdx].options[oIdx].text
+                            }
                             handleChange={handleChange}
                             handleDeleteOption={handleDeleteOption}
                             key={oIdx}
@@ -50,6 +58,13 @@ const QuestionForm = ({ addOption, deleteOption, deleteQuestion, errors = {}, ha
                             type={type}
                         />
                     ))}
+                    {question.options.length === 0 &&
+                        errors.questions &&
+                        errors.questions[qIdx] &&
+                        errors.questions[qIdx].options &&
+                        typeof errors.questions[qIdx].options === 'string' && (
+                            <div className="mb-3 text-danger">{errors.questions[qIdx].options}</div>
+                        )}
                     {otherAdded && (
                         <Option handleDeleteOption={handleDeleteOption} isOther={true} qIdx={qIdx} type={type} />
                     )}
