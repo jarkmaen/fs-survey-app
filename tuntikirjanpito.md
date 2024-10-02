@@ -22,6 +22,7 @@
 | 29.9. | 2    | making sure only the creator of the survey can close their own surveys |
 | 30.9. | 6.5  | adding different survey question types, questions can have "Other" as an option, survey creation ui looks great now |
 | 1.10. | 5.5  | adding survey form validation in the frontend, adding the possibility to remove options and questions in the survey form, adding various styling improvements |
-| 2.10. | 2    | improving survey form validation, adding notifications for successful creation, fixing couple validation bugs  |
+| 2.10. | 2    | improving survey form validation, adding notifications for successful creation, fixing couple validation bugs |
+| 2.10. | 2    | survey responding now has support for all question types, adding "Other" option functionality |
 |       |      | |
-| yht   | 62.5 | |
+| yht   | 66.5 | |

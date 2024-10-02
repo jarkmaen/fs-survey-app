@@ -6,7 +6,7 @@ import { LiaTimesSolid } from 'react-icons/lia'
 const Option = ({ error, handleChange, handleDeleteOption, isOther, oIdx, option, qIdx, type }) => (
     <Form.Group as={Row} className="mb-3" key={oIdx}>
         <FormCheckIcon type={type} />
-        <Col className="d-flex align-items-center" sm={10}>
+        <Col className="align-items-center d-flex" sm={10}>
             {isOther ? (
                 <span className="question-form-other">Other...</span>
             ) : (

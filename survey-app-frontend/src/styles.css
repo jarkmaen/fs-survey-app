@@ -164,6 +164,19 @@
     padding: 4px;
 }
 
+.question-form-other-input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.question-form-other-input:focus {
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: none;
+}
+
 .question-form-text {
     color: var(--primary-color);
     cursor: pointer;

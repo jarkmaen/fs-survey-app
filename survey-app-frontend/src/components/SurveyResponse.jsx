@@ -1,21 +1,44 @@
+import CheckboxQuestion from './CheckboxQuestion'
+import CommentBoxQuestion from './CommentBoxQuestion'
+import MultipleChoiceQuestion from './MultipleChoiceQuestion'
+import QuestionType from '../constants/enums'
+import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import { respondSurvey } from '../reducers/surveys'
-import { Button, Col, Container, Form, ListGroup, ListGroupItem, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { useState } from 'react'
 
 const SurveyResponse = () => {
     const [response, setResponse] = useState({})
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const { id } = useParams()
     const survey = useSelector(({ surveys }) => surveys.find((s) => s.id === id))
     if (!survey) {
         return <div>Survey not found</div>
     }
-    const handleChange = (qIdx, text) => {
-        setResponse({
-            ...response,
-            [qIdx]: text
+    const handleChange = (isCheckbox, qIdx, value) => {
+        setResponse((previous) => {
+            if (isCheckbox) {
+                const current = previous[qIdx] || []
+                if (current.includes(value)) {
+                    return {
+                        ...previous,
+                        [qIdx]: current.filter((v) => v !== value)
+                    }
+                } else {
+                    return {
+                        ...previous,
+                        [qIdx]: [...current, value]
+                    }
+                }
+            } else {
+                return {
+                    ...previous,
+                    [qIdx]: value
+                }
+            }
         })
     }
     const handleSubmit = async (event) => {
@@ -27,43 +50,38 @@ const SurveyResponse = () => {
         }
     }
     return (
-        <Container>
-            <Row>
-                <Col>
+        <Container className="my-5">
+            <Row className="justify-content-center">
+                <Col lg={6} md={8}>
                     <h2>{survey.title}</h2>
                     <p>{survey.description}</p>
                     <Form onSubmit={handleSubmit}>
-                        <ListGroup>
-                            {survey.questions.map((question) => (
-                                <ListGroupItem key={question.id}>
-                                    <Form.Group>
-                                        <Form.Label>{question.question}</Form.Label>
-                                        {question.options.length > 0 ? (
-                                            question.options.map((option, i) => (
-                                                <Form.Check
-                                                    key={i}
-                                                    label={option}
-                                                    name={question.id}
-                                                    onChange={(e) => handleChange(question.id, e.target.value)}
-                                                    type="radio"
-                                                    value={option}
-                                                />
-                                            ))
-                                        ) : (
-                                            <Form.Control
-                                                as="textarea"
-                                                onChange={(e) => handleChange(question.id, e.target.value)}
-                                                placeholder="Enter here"
-                                                rows={3}
-                                            />
-                                        )}
-                                    </Form.Group>
-                                </ListGroupItem>
-                            ))}
-                        </ListGroup>
-                        <Button type="submit" variant="primary">
-                            Submit
-                        </Button>
+                        {survey.questions.map((question) => (
+                            <div className="question-form" key={question.id}>
+                                <Form.Group>
+                                    <Form.Label>{question.question}</Form.Label>
+                                    {question.type === QuestionType.CHECKBOX ? (
+                                        <CheckboxQuestion handleChange={handleChange} question={question} />
+                                    ) : question.type === QuestionType.COMMENT_BOX ? (
+                                        <CommentBoxQuestion handleChange={handleChange} question={question} />
+                                    ) : question.type === QuestionType.MULTIPLE_CHOICE ? (
+                                        <MultipleChoiceQuestion handleChange={handleChange} question={question} />
+                                    ) : null}
+                                </Form.Group>
+                            </div>
+                        ))}
+                        <Row>
+                            <Col style={{ paddingRight: '16px' }} xs={9}>
+                                <Button className="w-100" type="submit">
+                                    Submit
+                                </Button>
+                            </Col>
+                            <Col style={{ paddingLeft: '0px' }} xs={3}>
+                                <Button className="w-100" onClick={() => navigate('/')} variant="outline-primary">
+                                    Cancel
+                                </Button>
+                            </Col>
+                        </Row>
                     </Form>
                 </Col>
             </Row>
