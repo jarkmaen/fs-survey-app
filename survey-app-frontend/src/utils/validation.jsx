@@ -83,3 +83,14 @@ export const surveyFormValidation = ({ title, description, questions }) => {
     }
     return errors
 }
+
+export const surveyResponseValidation = ({ questions, response }) => {
+    const errors = {}
+    questions.forEach((question) => {
+        const answer = response[question.id]
+        if (!answer || (Array.isArray(answer) && answer.length === 0)) {
+            errors[question.id] = 'Please provide an answer'
+        }
+    })
+    return errors
+}

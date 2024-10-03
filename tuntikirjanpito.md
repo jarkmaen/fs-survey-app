@@ -24,5 +24,6 @@
 | 1.10. | 5.5  | adding survey form validation in the frontend, adding the possibility to remove options and questions in the survey form, adding various styling improvements |
 | 2.10. | 2    | improving survey form validation, adding notifications for successful creation, fixing couple validation bugs |
 | 2.10. | 2    | survey responding now has support for all question types, adding "Other" option functionality |
+| 3.10. | 2.5  | fixing how checkbox and comment box type questions were being submitted and adding survey response validation in the frontend  |
 |       |      | |
-| yht   | 66.5 | |
+| yht   | 69   | |

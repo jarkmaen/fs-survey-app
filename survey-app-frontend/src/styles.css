@@ -111,6 +111,10 @@
     color: var(--placeholder-color);
 }
 
+.mb-2-5 {
+    margin-bottom: 0.625rem;
+}
+
 .navbar {
     background-color: white;
     border-bottom: 1px solid var(--seperator-color);

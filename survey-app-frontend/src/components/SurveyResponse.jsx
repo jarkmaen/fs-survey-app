@@ -4,12 +4,14 @@ import MultipleChoiceQuestion from './MultipleChoiceQuestion'
 import QuestionType from '../constants/enums'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import { respondSurvey } from '../reducers/surveys'
+import { surveyResponseValidation } from '../utils/validation'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { useState } from 'react'
 
 const SurveyResponse = () => {
+    const [errors, setErrors] = useState({})
     const [response, setResponse] = useState({})
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -18,19 +20,38 @@ const SurveyResponse = () => {
     if (!survey) {
         return <div>Survey not found</div>
     }
-    const handleChange = (isCheckbox, qIdx, value) => {
+    const handleChange = (isCheckbox, isOther, qIdx, value) => {
         setResponse((previous) => {
             if (isCheckbox) {
                 const current = previous[qIdx] || []
-                if (current.includes(value)) {
+                if (isOther) {
+                    const other = current.findIndex((answer) => answer.startsWith(`${qIdx}:`))
+                    if (value === '') {
+                        if (other !== -1) {
+                            current.splice(other, 1)
+                        }
+                    } else {
+                        if (other !== -1) {
+                            current[other] = `${qIdx}:${value}`
+                        } else {
+                            current.push(`${qIdx}:${value}`)
+                        }
+                    }
                     return {
                         ...previous,
-                        [qIdx]: current.filter((v) => v !== value)
+                        [qIdx]: current
                     }
                 } else {
-                    return {
-                        ...previous,
-                        [qIdx]: [...current, value]
+                    if (current.includes(value)) {
+                        return {
+                            ...previous,
+                            [qIdx]: current.filter((x) => x !== value)
+                        }
+                    } else {
+                        return {
+                            ...previous,
+                            [qIdx]: [...current, value]
+                        }
                     }
                 }
             } else {
@@ -43,10 +64,31 @@ const SurveyResponse = () => {
     }
     const handleSubmit = async (event) => {
         event.preventDefault()
-        try {
-            dispatch(respondSurvey(id, response))
-        } catch (e) {
-            console.log(e)
+        const errors = surveyResponseValidation({ questions: survey.questions, response })
+        setErrors(errors)
+        if (Object.keys(errors).length === 0) {
+            const trimmedResponse = { ...response }
+            survey.questions.forEach((question) => {
+                if (question.type === QuestionType.CHECKBOX && question.hasOther) {
+                    const qIdx = question.id
+                    if (Array.isArray(trimmedResponse[qIdx])) {
+                        trimmedResponse[qIdx] = trimmedResponse[qIdx].map((answer) => {
+                            if (answer.startsWith(`${qIdx}:`)) {
+                                return answer.replace(`${qIdx}:`, '')
+                            }
+                            return answer
+                        })
+                    }
+                }
+            })
+            try {
+                const result = await dispatch(respondSurvey(id, trimmedResponse))
+                if (result.success) {
+                    navigate('/')
+                }
+            } catch (e) {
+                console.log(e)
+            }
         }
     }
     return (
@@ -67,6 +109,7 @@ const SurveyResponse = () => {
                                     ) : question.type === QuestionType.MULTIPLE_CHOICE ? (
                                         <MultipleChoiceQuestion handleChange={handleChange} question={question} />
                                     ) : null}
+                                    {errors[question.id] && <div className="text-danger">{errors[question.id]}</div>}
                                 </Form.Group>
                             </div>
                         ))}
