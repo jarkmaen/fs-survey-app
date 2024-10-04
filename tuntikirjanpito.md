@@ -29,4 +29,4 @@
 | 4.10. | 0.5  | changing the notification alert to appear on the bottom right corner and updating its styling |
 | 4.10. | 1    | adding survey sorting functionality for open and closed surveys |
 |       |      | |
-| yht   | 72   | |
+| yht   | 73   | |
