@@ -1,6 +1,6 @@
 import QuestionResults from './QuestionResults'
-import QuestionType from '../constants/enums'
 import { Col, Container, Row } from 'react-bootstrap'
+import { QuestionType } from '../constants/enums'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 

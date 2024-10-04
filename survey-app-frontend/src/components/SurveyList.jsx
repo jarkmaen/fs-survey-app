@@ -4,13 +4,24 @@ import { FaPlus } from 'react-icons/fa'
 import { HiOutlineClipboardDocumentCheck } from 'react-icons/hi2'
 import { Link } from 'react-router-dom'
 import { LuClock } from 'react-icons/lu'
+import { SortOption } from '../constants/enums'
 import { useDispatch, useSelector } from 'react-redux'
 
-const SurveyList = ({ closed }) => {
+const SurveyList = ({ closed, sortOption }) => {
     const dispatch = useDispatch()
     const surveys = useSelector(({ surveys }) => surveys)
     const user = useSelector(({ user }) => user)
     const filteredSurveys = surveys.filter((survey) => survey.closed === closed)
+    const sortedSurveys = [...filteredSurveys].sort((a, b) => {
+        if (sortOption === SortOption.LATEST) {
+            return new Date(b.createdAt) - new Date(a.createdAt)
+        } else if (sortOption === SortOption.NAME) {
+            return a.title.localeCompare(b.title)
+        } else if (sortOption === SortOption.TIME) {
+            return b.questions.length - a.questions.length
+        }
+        return 0
+    })
     const handleCloseSurvey = async (event, id) => {
         event.preventDefault()
         try {
@@ -21,7 +32,7 @@ const SurveyList = ({ closed }) => {
     }
     return (
         <Row className="mt-4">
-            {filteredSurveys.map((survey) => (
+            {sortedSurveys.map((survey) => (
                 <Col className="mb-4" key={survey.id} md={4}>
                     <Card className="survey-card">
                         <Card.Body>
@@ -30,7 +41,7 @@ const SurveyList = ({ closed }) => {
                             </Card.Title>
                             <Card.Text className="fw-bold survey-card-title">{survey.title}</Card.Text>
                             <Card.Text className="align-items-center d-flex survey-card-time">
-                                <LuClock className="me-2" /> ~{(survey.questions.length * 0.5).toFixed(1)} min
+                                <LuClock className="me-2" /> ~{(survey.questions.length * 0.5)} min
                             </Card.Text>
                             <div className="d-flex justify-content-between">
                                 <Button

@@ -27,5 +27,6 @@
 | 3.10. | 2.5  | fixing how checkbox and comment box type questions were being submitted and adding survey response validation in the frontend  |
 | 4.10. | 2.5  | making the survey results ui a lot better, making sure survey results supports the new question types and display all the information correctly |
 | 4.10. | 0.5  | changing the notification alert to appear on the bottom right corner and updating its styling |
+| 4.10. | 1    | adding survey sorting functionality for open and closed surveys |
 |       |      | |
 | yht   | 72   | |

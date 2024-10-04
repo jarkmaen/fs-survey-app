@@ -4,4 +4,10 @@ const QuestionType = {
     MULTIPLE_CHOICE: 'multiple choice'
 }
 
-export default QuestionType
+const SortOption = {
+    LATEST: 'latest',
+    NAME: 'name',
+    TIME: 'time'
+}
+
+export { QuestionType, SortOption }

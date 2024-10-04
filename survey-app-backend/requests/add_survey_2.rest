@@ -8,15 +8,17 @@ Content-Type: application/json
     "questions": [
         {
             "question": "How would you rate your overall satisfaction with our services?",
+            "type": "multiple choice",
             "options": ["Very Satisfied", "Satisfied", "Neutral", "Unsatisfied", "Very Dissatisfied"]
         },
         {
             "question": "Would you recommend us to others?",
+            "type": "multiple choice",
             "options": ["Yes", "No"]
         },
         {
             "question": "What would you improve if you could?",
-            "options": []
+            "type": "comment box"
         }
     ]
 }

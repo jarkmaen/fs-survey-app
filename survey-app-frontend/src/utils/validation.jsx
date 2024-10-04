@@ -1,4 +1,4 @@
-import QuestionType from '../constants/enums'
+import { QuestionType } from '../constants/enums'
 
 const DESCRIPTION_MAX_LENGTH = 5000
 const OPTION_MAX_LENGTH = 250

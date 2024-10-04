@@ -1,5 +1,5 @@
-import QuestionType from '../constants/enums'
 import { Col, Form } from 'react-bootstrap'
+import { QuestionType } from '../constants/enums'
 
 const FormCheckIcon = ({ type }) => (
     <Col className="align-items-center d-flex justify-content-center" sm={1}>

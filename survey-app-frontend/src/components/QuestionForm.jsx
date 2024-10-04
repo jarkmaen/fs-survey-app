@@ -1,9 +1,9 @@
 import EditableField from './EditableField'
 import FormCheckIcon from './FormCheckIcon'
 import Option from './Option'
-import QuestionType from '../constants/enums'
 import { Button, Col, Form, Row } from 'react-bootstrap'
 import { FaRegTrashCan } from 'react-icons/fa6'
+import { QuestionType } from '../constants/enums'
 import { useState } from 'react'
 
 const QuestionForm = ({ addOption, deleteOption, deleteQuestion, errors, handleChange, qIdx, question }) => {

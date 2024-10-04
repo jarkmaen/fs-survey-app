@@ -271,6 +271,7 @@
 .survey-card {
     border-color: #dee0e2;
     border-radius: 20px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     padding: 1rem;
 }
 
@@ -314,6 +315,21 @@
 
 .survey-nav-default-border {
     border-bottom-width: 0px;
+}
+
+.survey-nav-dropdown .btn {
+    background-color: white;
+    border-radius: 0;
+    border: 0;
+    color: var(--seconday-text-color);
+    font-weight: 600;
+    height: 100%;
+    padding: 8px 16px;
+}
+
+.survey-nav-dropdown .btn:focus {
+    background-color: white;
+    color: black;
 }
 
 .survey-nav-tabs .survey-nav-link {

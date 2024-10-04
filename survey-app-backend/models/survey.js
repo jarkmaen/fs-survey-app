@@ -22,7 +22,7 @@ const surveySchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }
-})
+}, { timestamps: true })
 
 surveySchema.set('toJSON', {
     transform: (document, returnedObject) => {
