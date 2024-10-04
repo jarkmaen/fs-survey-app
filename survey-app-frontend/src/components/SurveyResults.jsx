@@ -1,4 +1,6 @@
-import { Col, Container, ListGroup, Row } from 'react-bootstrap'
+import QuestionResults from './QuestionResults'
+import QuestionType from '../constants/enums'
+import { Col, Container, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
@@ -9,30 +11,30 @@ const SurveyResults = () => {
         return <div>Survey not found</div>
     }
     return (
-        <Container>
-            <h1>{survey.title}</h1>
-            <p>{survey.description}</p>
-            {survey.questions.map((question) => (
-                <Row className="mb-4" key={question.id}>
-                    <Col>
-                        <h3>{question.question}</h3>
-                        <ListGroup variant="flush">
-                            {question.options.length === 0
-                                ? question.responses.map((response, i) => (
-                                      <ListGroup.Item key={i}>{response}</ListGroup.Item>
-                                  ))
-                                : question.options.map((option, i) => {
-                                      const count = question.responses.filter((response) => response === option).length
-                                      return (
-                                          <ListGroup.Item key={i}>
-                                              {option} - Responses: {count}
-                                          </ListGroup.Item>
-                                      )
-                                  })}
-                        </ListGroup>
-                    </Col>
-                </Row>
-            ))}
+        <Container className="my-5">
+            <Row className="justify-content-center">
+                <Col lg={8} md={4}>
+                    <h2>{survey.title}</h2>
+                    <p>{survey.description}</p>
+                    {survey.questions.map((question) => (
+                        <div className="question-result" key={question.id}>
+                            <h4 className="mb-3">
+                                Question: {question.question}
+                                <span className="question-result-type">
+                                    {question.type === QuestionType.CHECKBOX && '(checkbox)'}
+                                    {question.type === QuestionType.COMMENT_BOX && '(comment box)'}
+                                    {question.type === QuestionType.MULTIPLE_CHOICE && '(multiple choice)'}
+                                </span>
+                            </h4>
+                            {question.type === QuestionType.COMMENT_BOX ? (
+                                question.responses.map((response, i) => <div key={i}>- {response}</div>)
+                            ) : (
+                                <QuestionResults question={question} />
+                            )}
+                        </div>
+                    ))}
+                </Col>
+            </Row>
         </Container>
     )
 }

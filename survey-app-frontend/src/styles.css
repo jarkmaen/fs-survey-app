@@ -59,7 +59,7 @@
 }
 
 .create-survey-card:hover {
-    background-color: #ebf4fe;
+    background-color: var(--secondary-color);
     border-color: #5a6268;
 }
 
@@ -79,6 +79,29 @@
 .create-survey-text {
     font-size: 1.25rem;
     margin-top: 0.5rem;
+}
+
+.custom-progress-bar {
+    background-color: white;
+    border-radius: 0;
+    border-top: 1px solid #b1cbe8;
+    height: 70px;
+}
+
+.custom-progress-bar-container {
+    position: relative;
+}
+
+.custom-progress-bar-text {
+    color: #202223;
+    display: flex;
+    font-weight: 500;
+    justify-content: space-between;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
 }
 
 .editable-field {
@@ -139,6 +162,10 @@
     padding: 1rem;
 }
 
+.progress-bar {
+    background-color: var(--secondary-color);
+}
+
 .question-form {
     background-color: white;
     border-radius: 5px;
@@ -197,6 +224,27 @@
     background-color: #f3f3f3;
     border-radius: 50%;
     color: #5f6368;
+}
+
+.question-result {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.15);
+    margin-bottom: 16px;
+    padding: 32px;
+}
+
+.question-result-bottom {
+    width: 100%;
+    height: 1px;
+    background-color: #b1cbe8;
+}
+
+.question-result-type {
+    color: var(--seconday-text-color);
+    font-size: 0.9em;
+    font-style: italic;
+    margin-left: 10px;
 }
 
 .survey-card-button {
@@ -261,6 +309,7 @@
     --hover-over-color: #dde2ed;
     --placeholder-color: #909090;
     --primary-color: #164ed0;
+    --secondary-color: #ebf4fe;
     --seconday-text-color: #747474;
     --seperator-color: #d2dff8;
 }

@@ -50,11 +50,18 @@ export const initSurveys = () => {
 
 export const respondSurvey = (id, response) => {
     return async (dispatch) => {
-        const formattedResponse = {
-            questions: Object.entries(response).map(([id, response]) => ({ id, response }))
+        try {
+            const formattedResponse = {
+                questions: Object.entries(response).map(([id, response]) => ({ id, response }))
+            }
+            const data = await surveysService.respond(id, formattedResponse)
+            dispatch(alter(data))
+            dispatch(notify('Survey response submitted successfully!'))
+            return { success: true }
+        } catch {
+            dispatch(notify('Failed to submit survey response.', 'danger'))
+            return { success: false }
         }
-        const data = await surveysService.respond(id, formattedResponse)
-        dispatch(alter(data))
     }
 }
 
