@@ -156,10 +156,31 @@
     font-size: 1.5em;
 }
 
-.survey-card {
-    border-color: #dee0e2;
-    border-radius: 20px;
-    padding: 1rem;
+.notification-alert-container {
+    bottom: 20px;
+    font-size: 0.9rem;
+    position: fixed;
+    right: 20px;
+    max-width: 500px;
+    width: auto;
+    z-index: 1;
+}
+
+.notification-alert-container .btn-close {
+    box-shadow: none;
+    opacity: 1;
+}
+
+.notification-alert-danger {
+    background-color: var(--bs-danger-bg-subtle);
+    border-color: var(--bs-danger-border-subtle);
+    color: var(--bs-danger-text-emphasis);
+}
+
+.notification-alert-success {
+    background-color: black;
+    border-color: black;
+    color: white;
 }
 
 .progress-bar {
@@ -245,6 +266,12 @@
     font-size: 0.9em;
     font-style: italic;
     margin-left: 10px;
+}
+
+.survey-card {
+    border-color: #dee0e2;
+    border-radius: 20px;
+    padding: 1rem;
 }
 
 .survey-card-button {

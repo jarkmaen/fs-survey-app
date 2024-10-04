@@ -9,8 +9,13 @@ const Notification = () => {
         return null
     }
     return (
-        <Container className="mt-3">
-            <Alert variant={info.type} dismissible onClose={() => dispatch(clear())}>
+        <Container className="notification-alert-container">
+            <Alert
+                className={`notification-alert-${info.type}`}
+                closeVariant="white"
+                dismissible
+                onClose={() => dispatch(clear())}
+            >
                 {info.message}
             </Alert>
         </Container>
