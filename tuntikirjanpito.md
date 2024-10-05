@@ -28,5 +28,6 @@
 | 4.10. | 2.5  | making the survey results ui a lot better, making sure survey results supports the new question types and display all the information correctly |
 | 4.10. | 0.5  | changing the notification alert to appear on the bottom right corner and updating its styling |
 | 4.10. | 1    | adding survey sorting functionality for open and closed surveys |
+| 5.10. | 1    | adding some validation to backend as well, users won't be able to register with an already taken username anymore |
 |       |      | |
-| yht   | 73   | |
+| yht   | 74   | |

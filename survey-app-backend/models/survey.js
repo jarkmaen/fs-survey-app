@@ -4,10 +4,12 @@ const questionSchema = require('./question').schema
 const surveySchema = new mongoose.Schema({
     title: {
         type: String,
+        maxlength: 250,
         required: true
     },
     description: {
         type: String,
+        maxlength: 5000,
         required: true
     },
     questions: {

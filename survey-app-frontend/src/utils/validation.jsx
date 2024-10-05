@@ -1,5 +1,11 @@
 import { QuestionType } from '../constants/enums'
 
+const NAME_MAX_LENGTH = 50
+const PASSWORD_MAX_LENGTH = 64
+const PASSWORD_MIN_LENGTH = 8
+const USERNAME_MAX_LENGTH = 32
+const USERNAME_MIN_LENGTH = 3
+
 const DESCRIPTION_MAX_LENGTH = 5000
 const OPTION_MAX_LENGTH = 250
 const QUESTION_MAX_LENGTH = 250
@@ -33,12 +39,18 @@ export const registerFormValidation = ({ name, username, password }) => {
     const errors = {}
     if (!name.trim().includes(' ')) {
         errors.name = 'Name must be a full name (first and last name).'
+    } else if (name.length > NAME_MAX_LENGTH) {
+        errors.name = `Name cannot exceed ${NAME_MAX_LENGTH} characters.`
     }
-    if (username.length < 3) {
-        errors.username = 'Username must be at least 3 characters long.'
+    if (username.length < USERNAME_MIN_LENGTH) {
+        errors.username = `Username must be at least ${USERNAME_MIN_LENGTH} characters long.`
+    } else if (username.length > USERNAME_MAX_LENGTH) {
+        errors.username = `Username cannot exceed ${USERNAME_MAX_LENGTH} characters.`
     }
-    if (password.length < 8) {
-        errors.password = 'Password must be at least 8 characters long.'
+    if (password.length < PASSWORD_MIN_LENGTH) {
+        errors.password = `Password must be at least ${PASSWORD_MIN_LENGTH} characters long.`
+    } else if (password.length > PASSWORD_MAX_LENGTH) {
+        errors.password = `Password cannot exceed ${PASSWORD_MAX_LENGTH} characters.`
     }
     return errors
 }

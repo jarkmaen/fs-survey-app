@@ -58,8 +58,9 @@ export const registerUser = (userData) => {
             dispatch(set(user))
             dispatch(notify('Your registration has been successful!'))
             return { success: true }
-        } catch {
-            dispatch(notify('Failed to register.', 'danger'))
+        } catch (error) {
+            const message = error.response?.data?.error || 'Failed to register.'
+            dispatch(notify(message, 'danger'))
             return { success: false }
         }
     }
