@@ -1,13 +1,13 @@
-app = 'survey-app-frontend'
-primary_region = 'arn'
+app = 'fs-survey-app'
+primary_region = 'otp'
 
 [build]
 
 [env]
-  PORT = "80"
+  PORT = "3001"
 
 [http_service]
-  internal_port = 80
+  internal_port = 3001
   force_https = true
   auto_stop_machines = 'stop'
   auto_start_machines = true
