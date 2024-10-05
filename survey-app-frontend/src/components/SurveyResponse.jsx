@@ -18,7 +18,7 @@ const SurveyResponse = () => {
     const { id } = useParams()
     const survey = useSelector(({ surveys }) => surveys.find((s) => s.id === id))
     if (!survey) {
-        return <div>Survey not found</div>
+        return null
     }
     const handleChange = (isCheckbox, isOther, qIdx, value) => {
         setResponse((previous) => {

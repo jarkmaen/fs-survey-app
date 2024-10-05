@@ -1,14 +1,25 @@
 import QuestionResults from './QuestionResults'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Button, Col, Container, Row } from 'react-bootstrap'
 import { QuestionType } from '../constants/enums'
-import { useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { removeSurvey } from '../reducers/surveys'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const SurveyResults = () => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const { id } = useParams()
     const survey = useSelector(({ surveys }) => surveys.find((s) => s.id === id))
+    const user = useSelector(({ user }) => user)
     if (!survey) {
-        return <div>Survey not found</div>
+        return null
+    }
+    const handleDelete = () => {
+        const ok = window.confirm(`Are you sure you want to remove '${survey.title}'?`)
+        if (ok) {
+            dispatch(removeSurvey(id))
+            navigate('/')
+        }
     }
     return (
         <Container className="my-5">
@@ -33,6 +44,11 @@ const SurveyResults = () => {
                             )}
                         </div>
                     ))}
+                    {user && survey.user.username === user.username && (
+                        <Button variant="danger" onClick={handleDelete}>
+                            Delete Survey
+                        </Button>
+                    )}
                 </Col>
             </Row>
         </Container>

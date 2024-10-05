@@ -1,0 +1,3 @@
+DELETE http://localhost:3001/api/surveys/66fceb5f1ff87dd2e577e4aa
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZmE3MmRjYzE1Yzc5NzMzZDI2ODdjOSIsInVzZXJuYW1lIjoidGVzdHVzZXIiLCJpYXQiOjE3Mjc2ODk0NDN9.9XejxvwlCVzcObWT1qImemv06gGDvjj5IETrAXmCKoQ
+Content-Type: application/json

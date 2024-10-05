@@ -1,6 +1,7 @@
-const User = require('../models/user')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 const router = require('express').Router()
+const User = require('../models/user')
 
 router.get('/', async (request, response) => {
     const users = await User.find({})
@@ -21,7 +22,12 @@ router.post('/', async (request, response) => {
         passwordHash
     })
     const savedUser = await user.save()
-    response.status(201).json(savedUser)
+    const userForToken = {
+        id: savedUser._id,
+        username: savedUser.username
+    }
+    const token = jwt.sign(userForToken, process.env.SECRET)
+    response.status(201).json({ name: savedUser.name, token, username: savedUser.username })
 })
 
 module.exports = router

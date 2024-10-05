@@ -1,3 +1,4 @@
+import storageService from '../services/storage'
 import surveysService from '../services/surveys'
 import { createSlice } from '@reduxjs/toolkit'
 import { notify } from './notification'
@@ -14,14 +15,22 @@ const slice = createSlice({
         },
         alter(state, { payload }) {
             return state.map((s) => (s.id !== payload.id ? s : payload))
+        },
+        remove(state, { payload }) {
+            return state.filter((s) => s.id !== payload)
         }
     }
 })
 
-const { set, add, alter } = slice.actions
+const { set, add, alter, remove } = slice.actions
 
 export const addSurvey = (survey) => {
     return async (dispatch) => {
+        const user = storageService.loadUser()
+        if (!user) {
+            dispatch(notify('You must be logged in to create a survey.', 'danger'))
+            return { success: false }
+        }
         try {
             const data = await surveysService.create(survey)
             dispatch(add(data))
@@ -48,9 +57,22 @@ export const initSurveys = () => {
     }
 }
 
+export const removeSurvey = (id) => {
+    return async (dispatch) => {
+        await surveysService.remove(id)
+        dispatch(remove(id))
+        dispatch(notify('Survey removed successfully!'))
+    }
+}
+
 export const respondSurvey = (id, response) => {
     return async (dispatch) => {
         try {
+            const user = storageService.loadUser()
+            if (!user) {
+                dispatch(notify('You must be logged in to submit a response.', 'danger'))
+                return { success: false }
+            }
             const formattedResponse = {
                 questions: Object.entries(response).map(([id, response]) => ({ id, response }))
             }

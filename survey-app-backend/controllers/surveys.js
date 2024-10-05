@@ -8,6 +8,20 @@ router.get('/', async (request, response) => {
     response.json(surveys)
 })
 
+router.delete('/:id', userExtractor, async (request, response) => {
+    const { id } = request.params
+    const survey = await Survey.findById(id)
+    if (!survey) {
+        return response.status(404).send({ error: 'survey not found' })
+    }
+    const user = request.user
+    if (!user || survey.user.toString() !== user.id.toString()) {
+        return response.status(401).send({ error: 'operation not permitted' })
+    }
+    await Survey.findByIdAndDelete(id)
+    response.status(204).end()
+})
+
 router.patch('/:id/close', userExtractor, async (request, response) => {
     const { id } = request.params
     const survey = await Survey.findById(id)
