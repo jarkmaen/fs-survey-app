@@ -4,7 +4,7 @@ const router = require('express').Router()
 const User = require('../models/user')
 
 router.get('/', async (request, response) => {
-    const users = await User.find({})
+    const users = await User.find({}).populate('surveys', { id: 1, title: 1 })
     response.json(users)
 })
 
@@ -27,7 +27,19 @@ router.post('/', async (request, response) => {
         username: savedUser.username
     }
     const token = jwt.sign(userForToken, process.env.SECRET)
-    response.status(201).json({ name: savedUser.name, token, username: savedUser.username })
+    response.status(201).json({ id: savedUser.id, name: savedUser.name, token, username: savedUser.username })
+})
+
+router.put('/update', async (request, response) => {
+    const { id, name } = request.body
+    if (!id) {
+        return response.status(400).json({ error: 'id is missing' })
+    }
+    if (!name) {
+        return response.status(400).json({ error: 'name is missing' })
+    }
+    const updatedUser = await User.findByIdAndUpdate(id, { name }, { context: 'query', new: true, runValidators: true })
+    response.json(updatedUser)
 })
 
 module.exports = router

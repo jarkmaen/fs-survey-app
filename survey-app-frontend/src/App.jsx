@@ -1,13 +1,14 @@
 import './styles.css'
+import AccountSettings from './components/AccountSettings'
 import Header from './components/Header'
 import Home from './components/Home'
 import LoginForm from './components/LoginForm'
 import Notification from './components/Notification'
+import PageNotFound from './components/PageNotFound'
 import RegisterForm from './components/RegisterForm'
 import Survey from './components/Survey'
 import SurveyForm from './components/SurveyForm'
 import SurveyList from './components/SurveyList'
-import PageNotFound from './components/PageNotFound'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { useClearUser, useInitialization } from './hooks/index'
 import { useEffect } from 'react'
@@ -31,6 +32,7 @@ function App() {
             <Routes>
                 <Route path="*" element={<PageNotFound />} />
                 <Route path="/" element={<Home />} />
+                <Route path="/account-settings" element={<AccountSettings />} />
                 <Route path="/create-survey" element={<SurveyForm />} />
                 <Route path="/login" element={<LoginForm />} />
                 <Route path="/signup" element={<RegisterForm />} />

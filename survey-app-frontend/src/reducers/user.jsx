@@ -66,4 +66,19 @@ export const registerUser = (userData) => {
     }
 }
 
+export const updateUser = (userData) => {
+    return async (dispatch) => {
+        try {
+            const user = await usersService.update(userData)
+            storageService.saveUser(user)
+            dispatch(set(user))
+            dispatch(notify('Name updated successfully!'))
+            return { success: true }
+        } catch {
+            dispatch(notify('Failed to update name.', 'danger'))
+            return { success: false }
+        }
+    }
+}
+
 export default slice.reducer

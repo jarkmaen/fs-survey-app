@@ -1,4 +1,5 @@
-import { Button, Container, Nav, Navbar } from 'react-bootstrap'
+import { Button, Container, Dropdown, Nav, Navbar } from 'react-bootstrap'
+import { CustomMenu, CustomToggle } from './CustomDropdown'
 import { Link, useNavigate } from 'react-router-dom'
 
 const Header = ({ isHome, logout, user }) => {
@@ -16,12 +17,18 @@ const Header = ({ isHome, logout, user }) => {
                 <Navbar.Collapse className="justify-content-end">
                     <Nav>
                         {user ? (
-                            <Navbar.Text>
-                                Signed in as:{' '}
-                                <a href="#" onClick={handleLogout}>
-                                    {user.name}
-                                </a>
-                            </Navbar.Text>
+                            <>
+                                <span style={{ marginRight: '5px' }}>Signed in as:</span>
+                                <Dropdown>
+                                    <Dropdown.Toggle as={CustomToggle}>{user.name}</Dropdown.Toggle>
+                                    <Dropdown.Menu as={CustomMenu}>
+                                        <Dropdown.Item onClick={() => navigate('/account-settings')}>
+                                            Account Settings
+                                        </Dropdown.Item>
+                                        <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </>
                         ) : (
                             <Button className="navbar-button" onClick={() => navigate('/login')} variant="primary">
                                 Log in or Sign up

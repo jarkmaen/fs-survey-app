@@ -7,8 +7,8 @@ import { useState } from 'react'
 
 const LoginForm = () => {
     const [errors, setErrors] = useState({})
-    const [username, setUsername] = useState('testuser')
-    const [password, setPassword] = useState('password123')
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const handleSubmit = async (event) => {

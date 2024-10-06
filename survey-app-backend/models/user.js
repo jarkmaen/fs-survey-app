@@ -4,7 +4,7 @@ const userSchema = mongoose.Schema({
     name: {
         type: String,
         maxlength: 50,
-        minlength: 3,
+        minlength: 2,
         required: true
     },
     username: {
@@ -14,7 +14,13 @@ const userSchema = mongoose.Schema({
         required: true,
         unique: true
     },
-    passwordHash: String
+    passwordHash: String,
+    surveys: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Survey'
+        }
+    ]
 })
 
 userSchema.set('toJSON', {

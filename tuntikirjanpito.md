@@ -30,6 +30,7 @@
 | 4.10. | 1    | adding survey sorting functionality for open and closed surveys |
 | 5.10. | 1    | adding some validation to backend as well, users trying to register with an already taken username will get a message about it |
 | 5.10. | 2.5  | making sure you must be logged in to submit a response or to create a new survey, adding the ability to delete your own survey from the survey results view after it has been closed, fixing a bug related to jwt token generation when registering |
-| 5.10. | 1.5  | deploying to fly.io and making it all to work there |
+| 5.10. | 1.5  | deploying to fly.io and making sure it all works there |
+| 6.10. | 4    | adding a page not found page, creating an account settings page where you can now update your name and see a list of all the surveys you have created, updating the header nav bar to include a dropdown menu where you can access the account settings page |
 |       |      | |
-| yht   | 78   | |
+| yht   | 82   | |

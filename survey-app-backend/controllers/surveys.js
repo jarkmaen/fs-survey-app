@@ -61,6 +61,8 @@ router.post('/', userExtractor, async (request, response) => {
     }
     survey.user = user.id
     let savedSurvey = await survey.save()
+    user.surveys = user.surveys.concat(savedSurvey.id)
+    await user.save()
     savedSurvey = await Survey.findById(savedSurvey.id).populate('user')
     surveyQuestions.forEach((q) => (q.surveyId = survey.id))
     await Promise.all(surveyQuestions.map((q) => q.save()))

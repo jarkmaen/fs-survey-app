@@ -1,6 +1,7 @@
 import { QuestionType } from '../constants/enums'
 
 const NAME_MAX_LENGTH = 50
+const NAME_MIN_LENGTH = 2
 const PASSWORD_MAX_LENGTH = 64
 const PASSWORD_MIN_LENGTH = 8
 const USERNAME_MAX_LENGTH = 32
@@ -35,13 +36,19 @@ export const loginFormValidation = ({ username, password }) => {
     return errors
 }
 
-export const registerFormValidation = ({ name, username, password }) => {
+export const nameValidation = (name) => {
     const errors = {}
-    if (!name.trim().includes(' ')) {
-        errors.name = 'Name must be a full name (first and last name).'
+    if (name.length < NAME_MIN_LENGTH) {
+        errors.name = `Name must be at least ${NAME_MIN_LENGTH} characters long.`
     } else if (name.length > NAME_MAX_LENGTH) {
         errors.name = `Name cannot exceed ${NAME_MAX_LENGTH} characters.`
     }
+    return errors
+}
+
+export const registerFormValidation = ({ name, username, password }) => {
+    const errors = {}
+    Object.assign(errors, nameValidation(name))
     if (username.length < USERNAME_MIN_LENGTH) {
         errors.username = `Username must be at least ${USERNAME_MIN_LENGTH} characters long.`
     } else if (username.length > USERNAME_MAX_LENGTH) {

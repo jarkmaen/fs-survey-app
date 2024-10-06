@@ -12,4 +12,9 @@ const register = async (userData) => {
     return response.data
 }
 
-export default { getAll, register }
+const update = async (userData) => {
+    const response = await axios.put(`${baseUrl}/update`, userData)
+    return response.data
+}
+
+export default { getAll, register, update }
