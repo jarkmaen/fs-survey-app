@@ -7,6 +7,7 @@ import RegisterForm from './components/RegisterForm'
 import Survey from './components/Survey'
 import SurveyForm from './components/SurveyForm'
 import SurveyList from './components/SurveyList'
+import PageNotFound from './components/PageNotFound'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { useClearUser, useInitialization } from './hooks/index'
 import { useEffect } from 'react'
@@ -28,6 +29,7 @@ function App() {
             <Header isHome={location.pathname === '/'} logout={logout} user={user} />
             <Notification />
             <Routes>
+                <Route path="*" element={<PageNotFound />} />
                 <Route path="/" element={<Home />} />
                 <Route path="/create-survey" element={<SurveyForm />} />
                 <Route path="/login" element={<LoginForm />} />
