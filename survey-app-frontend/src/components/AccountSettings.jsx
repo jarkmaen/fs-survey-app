@@ -1,7 +1,7 @@
 import { Button, Col, Container, Form, Modal, Row } from 'react-bootstrap'
 import { FaChevronRight, FaList, FaRegCircleUser, FaRegTrashCan } from 'react-icons/fa6'
 import { nameValidation } from '../utils/validation'
-import { updateUser } from '../reducers/user'
+import { removeUser, updateUser } from '../reducers/user'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
@@ -19,9 +19,16 @@ const AccountSettings = () => {
     if (!user) {
         return null
     }
-    const handleDeleteAccount = () => {
-        console.log('TODO: Account deletion')
-        setShowDeleteModal(false)
+    const handleDeleteAccount = async () => {
+        try {
+            const result = await dispatch(removeUser({ id: user.id }))
+            if (result.success) {
+                setShowDeleteModal(false)
+                navigate('/')
+            }
+        } catch (e) {
+            console.log(e)
+        }
     }
     const handleNameChange = async (event) => {
         event.preventDefault()

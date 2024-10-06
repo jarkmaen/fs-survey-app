@@ -1,0 +1,6 @@
+DELETE http://localhost:3001/api/users/remove
+Content-Type: application/json
+
+{
+    "id": "6702db05bf7d2a889578eb84"
+}

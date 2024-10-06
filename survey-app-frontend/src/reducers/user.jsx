@@ -2,6 +2,8 @@ import loginService from '../services/login'
 import storageService from '../services/storage'
 import usersService from '../services/users'
 import { createSlice } from '@reduxjs/toolkit'
+import { initSurveys } from '../reducers/surveys'
+import { initUsers } from '../reducers/users'
 import { notify } from './notification'
 
 const initialState = null
@@ -55,12 +57,28 @@ export const registerUser = (userData) => {
         try {
             const user = await usersService.register(userData)
             storageService.saveUser(user)
+            dispatch(initUsers())
             dispatch(set(user))
             dispatch(notify('Your registration has been successful!'))
             return { success: true }
         } catch (error) {
             const message = error.response?.data?.error || 'Failed to register.'
             dispatch(notify(message, 'danger'))
+            return { success: false }
+        }
+    }
+}
+
+export const removeUser = (userData) => {
+    return async (dispatch) => {
+        try {
+            await usersService.remove(userData)
+            dispatch(clearUser())
+            dispatch(initSurveys())
+            dispatch(notify('User removed successfully!'))
+            return { success: true }
+        } catch {
+            dispatch(notify('Failed to remove user.', 'danger'))
             return { success: false }
         }
     }

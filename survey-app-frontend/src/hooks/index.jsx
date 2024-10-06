@@ -1,5 +1,5 @@
+import { clearUser, initUser } from '../reducers/user'
 import { initSurveys } from '../reducers/surveys'
-import { initUser, clearUser } from '../reducers/user'
 import { initUsers } from '../reducers/users'
 import { notify } from '../reducers/notification'
 import { useDispatch } from 'react-redux'

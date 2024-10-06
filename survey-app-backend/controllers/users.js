@@ -1,7 +1,22 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const router = require('express').Router()
+const Survey = require('../models/survey')
 const User = require('../models/user')
+
+router.delete('/remove', async (request, response) => {
+    const { id } = request.body
+    if (!id) {
+        return response.status(400).json({ error: 'id is missing' })
+    }
+    const user = await User.findById(id)
+    if (!user) {
+        return response.status(404).json({ error: 'user not found' })
+    }
+    await Survey.deleteMany({ user: id })
+    await User.findByIdAndDelete(id)
+    response.status(204).end()
+})
 
 router.get('/', async (request, response) => {
     const users = await User.find({}).populate('surveys', { id: 1, title: 1 })

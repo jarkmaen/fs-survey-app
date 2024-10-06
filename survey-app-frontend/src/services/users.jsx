@@ -12,9 +12,14 @@ const register = async (userData) => {
     return response.data
 }
 
+const remove = async (userData) => {
+    const response = await axios.delete(`${baseUrl}/remove`, { data: userData })
+    return response.data
+}
+
 const update = async (userData) => {
     const response = await axios.put(`${baseUrl}/update`, userData)
     return response.data
 }
 
-export default { getAll, register, update }
+export default { getAll, register, remove, update }

@@ -32,5 +32,6 @@
 | 5.10. | 2.5  | making sure you must be logged in to submit a response or to create a new survey, adding the ability to delete your own survey from the survey results view after it has been closed, fixing a bug related to jwt token generation when registering |
 | 5.10. | 1.5  | deploying to fly.io and making sure it all works there |
 | 6.10. | 4    | adding a page not found page, creating an account settings page where you can now update your name and see a list of all the surveys you have created, updating the header nav bar to include a dropdown menu where you can access the account settings page |
+| 6.10. | 1    | adding a delete account button in the account settings page that also deletes all the surveys that account had created |
 |       |      | |
-| yht   | 82   | |
+| yht   | 83   | |
