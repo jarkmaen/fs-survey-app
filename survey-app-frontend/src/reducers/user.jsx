@@ -75,10 +75,10 @@ export const removeUser = (userData) => {
             await usersService.remove(userData)
             dispatch(clearUser())
             dispatch(initSurveys())
-            dispatch(notify('User removed successfully!'))
+            dispatch(notify('Account deleted successfully!'))
             return { success: true }
         } catch {
-            dispatch(notify('Failed to remove user.', 'danger'))
+            dispatch(notify('Failed to delete account.', 'danger'))
             return { success: false }
         }
     }

@@ -1,5 +1,5 @@
 import { Button, Card, Col, Row } from 'react-bootstrap'
-import { closeSurvey } from '../reducers/surveys'
+import { closeSurvey, removeSurvey } from '../reducers/surveys'
 import { FaPlus } from 'react-icons/fa'
 import { HiOutlineClipboardDocumentCheck } from 'react-icons/hi2'
 import { Link } from 'react-router-dom'
@@ -28,6 +28,13 @@ const SurveyList = ({ closed, sortOption }) => {
             dispatch(closeSurvey(id))
         } catch (e) {
             console.log(e)
+        }
+    }
+    const handleDeleteSurvey = async (event, id, title) => {
+        event.preventDefault()
+        const ok = window.confirm(`Are you sure you want to remove '${title}'?`)
+        if (ok) {
+            dispatch(removeSurvey(id))
         }
     }
     return (
@@ -67,6 +74,15 @@ const SurveyList = ({ closed, sortOption }) => {
                                         variant="danger"
                                     >
                                         Close Survey
+                                    </Button>
+                                )}
+                                {closed && user && survey.user.username === user.username && (
+                                    <Button
+                                        className="flex-grow-1 mx-1 survey-card-button"
+                                        onClick={(event) => handleDeleteSurvey(event, survey.id, survey.title)}
+                                        variant="danger"
+                                    >
+                                        Delete Survey
                                     </Button>
                                 )}
                             </div>

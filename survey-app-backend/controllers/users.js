@@ -54,7 +54,12 @@ router.put('/update', async (request, response) => {
         return response.status(400).json({ error: 'name is missing' })
     }
     const updatedUser = await User.findByIdAndUpdate(id, { name }, { context: 'query', new: true, runValidators: true })
-    response.json(updatedUser)
+    const userForToken = {
+        id: updatedUser._id,
+        username: updatedUser.username
+    }
+    const token = jwt.sign(userForToken, process.env.SECRET)
+    response.json({ ...updatedUser.toJSON(), token })
 })
 
 module.exports = router
