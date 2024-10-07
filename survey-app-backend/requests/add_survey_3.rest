@@ -1,0 +1,52 @@
+POST http://localhost:3001/api/surveys
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDQxMGUxNTdlZWQ1YTdlNDExMGIxNyIsInVzZXJuYW1lIjoiYmVhdGxlc19mYW4iLCJpYXQiOjE3MjgzMjIwMDl9.VbNrxUZaYqD0ItSlz6oaoRqo-N3_QhgHMVK-38h4pKE
+Content-Type: application/json
+
+{
+    "title": "The Beatles Survey",
+    "description": "Survey about The Beatles and their music",
+    "questions": [
+        {
+            "question": "What is your age range?",
+            "type": "multiple choice",
+            "options": ["Under 18", "18-24", "25-34", "35-44", "45-64", "65+"]
+        },
+        {
+            "question": "How long have you been listening to The Beatles?",
+            "type": "multiple choice",
+            "options": ["Less than a year", "1-5 years", "6-10 years", "10+ years"]
+        },
+        {
+            "question": "What is your favorite Beatles album?",
+            "type": "multiple choice",
+            "options": ["Please Please Me", "With the Beatles", "A Hard Day's Night", "Beatles for Sale", "Help!", "Rubber Soul", "Revolver", "Sgt. Pepper's Lonely Hearts Club Band", "The Beatles (White Album)", "Yellow Submarine", "Abbey Road", "Let It Be"]
+        },
+        {
+            "question": "Which Beatles album do you like the least?",
+            "type": "multiple choice",
+            "options": ["Please Please Me", "With the Beatles", "A Hard Day's Night", "Beatles for Sale", "Help!", "Rubber Soul", "Revolver", "Sgt. Pepper's Lonely Hearts Club Band", "The Beatles (White Album)", "Yellow Submarine", "Abbey Road", "Let It Be"]
+        },
+        {
+            "question": "What is your favorite Beatles song?",
+            "type": "comment box"
+        },
+        {
+            "question": "What is your least favorite Beatles song?",
+            "type": "comment box"
+        },
+        {
+            "question": "Who is your favorite member?",
+            "type": "multiple choice",
+            "options": ["John Lennon", "Paul McCartney", "George Harrison", "Ringo Starr"]
+        },
+        {
+            "question": "Who is your favorite member (solo)?",
+            "type": "multiple choice",
+            "options": ["John Lennon", "Paul McCartney", "George Harrison", "Ringo Starr"]
+        },
+        {
+            "question": "What is your favorite solo album?",
+            "type": "comment box"
+        }
+    ]
+}

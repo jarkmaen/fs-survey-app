@@ -1,0 +1,32 @@
+POST http://localhost:3001/api/surveys
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDQxZGZmMjkxNTlkNWI1MDdhNmNmOCIsInVzZXJuYW1lIjoiam9obl9kb2UiLCJpYXQiOjE3MjgzMjMxMTZ9.Q6c5sxTlT-1VCBAuwcFDmpGEfz8zkUgs4dhHcHbmw9g
+Content-Type: application/json
+
+{
+    "title": "Hobbies Survey",
+    "description": "A survey to find out about your hobbies",
+    "questions": [
+        {
+            "question": "What is your favorite hobby?",
+            "type": "multiple choice",
+            "hasOther": true,
+            "options": ["Art", "Cooking", "Gaming", "Music", "Reading", "Sports", "Traveling"]
+        },
+        {
+            "question": "Which of the following hobbies do you enjoy?",
+            "type": "checkbox",
+            "hasOther": true,
+            "options": ["Art", "Cooking", "Gaming", "Music", "Reading", "Sports", "Traveling"]
+        },
+        {
+            "question": "What is your least favorite hobby?",
+            "type": "multiple choice",
+            "hasOther": true,
+            "options": ["Art", "Cooking", "Gaming", "Music", "Reading", "Sports", "Traveling"]
+        },
+        {
+            "question": "Please describe why you enjoy your favorite hobby.",
+            "type": "comment box"
+        }
+    ]
+}

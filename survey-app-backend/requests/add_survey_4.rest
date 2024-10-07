@@ -1,0 +1,16 @@
+POST http://localhost:3001/api/surveys
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDJlYTAxOTkxZjc1MWZmYTU4ZjE3ZCIsInVzZXJuYW1lIjoib2tfYm9vbWVyIiwiaWF0IjoxNzI4MzIyNTA1fQ.tRl3Q8K-wi3YP2xPuCieS5RbIKSbDhhk9G8T8WWy5Qs
+Content-Type: application/json
+
+{
+    "title": "Favorite Color Survey",
+    "description": "Just a simple survey to find out your favorite color",
+    "questions": [
+        {
+            "question": "What is your favorite color?",
+            "type": "multiple choice",
+            "hasOther": true,
+            "options": ["Black", "Blue", "Green", "Orange", "Purple", "Red", "White", "Yellow"]
+        }
+    ]
+}

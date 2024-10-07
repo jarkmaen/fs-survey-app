@@ -1,9 +1,14 @@
 # Full Stack Web Development Project - Survey App
 
-## Live Demo
-[survey-app-frontend.fly.dev](https://survey-app-frontend.fly.dev/)
+## Live demo
 
-## User Instructions
+A demo of the application can be found at: [https://fs-survey-app.fly.dev](https://fs-survey-app.fly.dev)
 
-## Time Keeping
-[Work hours](https://github.com/jarkmaen/full-stack-harjoitustyo/blob/master/tuntikirjanpito.md)
+## General
+
+This survey app was developed for the University of Helsinki Full Stack project course. In the app users can create surveys, respond to them, and view the results. The frontend is built using React and Redux. The backend uses Node.js and Express, and MongoDB for the database.
+
+## Documentation
+
+-   [User instructions](documentation/kayttoohje.md)
+-   [Work hours](documentation/tuntikirjanpito.md)

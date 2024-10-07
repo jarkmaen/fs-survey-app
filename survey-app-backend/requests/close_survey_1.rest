@@ -1,2 +1,3 @@
-PATCH http://localhost:3001/api/surveys/66f002a5457c5f9e4fadb44b/close
+PATCH http://localhost:3001/api/surveys/67028d421b090e2485c2ed22/close
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDI4YzVmZDUwYTNhNjdlZWY5MzAwNSIsInVzZXJuYW1lIjoidGVzdHVzZXIiLCJpYXQiOjE3MjgzMjQ3MzF9.5BTT9PRYjoCTcAXofrgFpg7QJpir1uyyudlcObOkMpk
 Content-Type: application/json

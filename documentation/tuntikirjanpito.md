@@ -33,5 +33,7 @@
 | 5.10. | 1.5  | deploying to fly.io and making sure it all works there |
 | 6.10. | 4    | adding a page not found page, creating an account settings page where you can now update your name and see a list of all the surveys you have created, updating the header nav bar to include a dropdown menu where you can access the account settings page |
 | 6.10. | 1    | adding a delete account button in the account settings page that also deletes all the surveys that account had created |
+| 7.10. | 0.5  | making it so that you can see the creator of the survey in the survey listing view and updated the survey card styling a little bit |
+| 7.10. | 2.5  | updating readme, adding some survey data to make it more representable, adding a user guide with some screenshots |
 |       |      | |
-| yht   | 83   | |
+| yht   | 86   | |
