@@ -18,7 +18,7 @@ router.delete('/:id', userExtractor, async (request, response) => {
     if (!user || survey.user.toString() !== user.id.toString()) {
         return response.status(401).send({ error: 'operation not permitted' })
     }
-    await Survey.findByIdAndDelete(id)
+    await Survey.findByIdAndDelete(id).populate('user', { name: 1, username: 1 })
     response.status(204).end()
 })
 
@@ -33,7 +33,7 @@ router.patch('/:id/close', userExtractor, async (request, response) => {
         return response.status(401).send({ error: 'operation not permitted' })
     }
     survey.closed = true
-    const closedSurvey = await survey.save()
+    const closedSurvey = await survey.save().then((s) => s.populate('user', { name: 1, username: 1 }))
     response.json(closedSurvey)
 })
 
@@ -63,7 +63,7 @@ router.post('/', userExtractor, async (request, response) => {
     let savedSurvey = await survey.save()
     user.surveys = user.surveys.concat(savedSurvey.id)
     await user.save()
-    savedSurvey = await Survey.findById(savedSurvey.id).populate('user')
+    savedSurvey = await Survey.findById(savedSurvey.id).populate('user', { name: 1, username: 1 })
     surveyQuestions.forEach((q) => (q.surveyId = survey.id))
     await Promise.all(surveyQuestions.map((q) => q.save()))
     response.status(201).json(savedSurvey)
@@ -84,7 +84,11 @@ router.post('/:id/responses', userExtractor, async (request, response) => {
         const newResponse = questions.find((q) => q.id === question.id)
         question.responses.push(newResponse.response)
     })
-    const updatedSurvey = await Survey.findByIdAndUpdate(survey.id, { questions: survey.questions }, { new: true })
+    const updatedSurvey = await Survey.findByIdAndUpdate(
+        survey.id,
+        { questions: survey.questions },
+        { new: true }
+    ).populate('user', { name: 1, username: 1 })
     response.status(200).json(updatedSurvey)
 })
 
