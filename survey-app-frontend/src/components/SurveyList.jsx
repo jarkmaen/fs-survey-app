@@ -36,12 +36,20 @@ const SurveyList = ({ closed, sortOption }) => {
                 <Col className="mb-4" key={survey.id} md={4}>
                     <Card className="survey-card">
                         <Card.Body>
-                            <Card.Title className="align-items-center d-flex">
-                                <HiOutlineClipboardDocumentCheck className="me-2" /> Survey
+                            <Card.Title className="align-items-center d-flex justify-content-between">
+                                <span>
+                                    <HiOutlineClipboardDocumentCheck className="me-2" /> Survey
+                                </span>
+                                <span
+                                    className="text-muted text-truncate"
+                                    style={{ fontSize: '0.7em', maxWidth: '50%' }}
+                                >
+                                    By: {survey.user.name}
+                                </span>
                             </Card.Title>
                             <Card.Text className="fw-bold survey-card-title">{survey.title}</Card.Text>
                             <Card.Text className="align-items-center d-flex survey-card-time">
-                                <LuClock className="me-2" /> ~{(survey.questions.length * 0.5)} min
+                                <LuClock className="me-2" /> ~{survey.questions.length * 0.5} min
                             </Card.Text>
                             <div className="d-flex justify-content-between">
                                 <Button

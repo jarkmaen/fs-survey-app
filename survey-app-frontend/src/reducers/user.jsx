@@ -89,6 +89,7 @@ export const updateUser = (userData) => {
         try {
             const user = await usersService.update(userData)
             storageService.saveUser(user)
+            dispatch(initSurveys())
             dispatch(set(user))
             dispatch(notify('Name updated successfully!'))
             return { success: true }
