@@ -36,6 +36,5 @@
 | 7.10. | 0.5  | making it so that you can see the creator of the survey in the survey listing view and updated the survey card styling a little bit |
 | 7.10. | 2.5  | updating readme, adding some survey data to make it more representable, adding a user guide with some screenshots |
 | 7.10. | 1    | making sure the user information is always populated into a survey when some update happens, adding a delete survey button also on the closed survey viewing list, fixing a bug where the account token became undefined after updating the account name |
-| 7.10. | 0.5  | finishing up the project |
-|       |      | |
+| 7.10. | 0.5  | updating the documentation, finishing up the project |
 | yht   | 87.5 | |
