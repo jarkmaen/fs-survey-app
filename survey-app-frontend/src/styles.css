@@ -82,7 +82,7 @@
     border: 2px dashed #6c757d;
     height: 238px;
     transition: background-color 0.3s, border-color 0.3s;
-    width: 416px;
+    width: 100%;
 }
 
 .create-survey-card:hover {
