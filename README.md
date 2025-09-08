@@ -27,10 +27,10 @@ To clone and run this application, you'll need [Git](https://git-scm.com/) and [
 
 ```
 # Clone this repository
-$ git clone https://github.com/jarkmaen/full-stack-harjoitustyo.git
+$ git clone https://github.com/jarkmaen/fs-survey-app.git
 
 # Go into the project directory
-$ cd full-stack-harjoitustyo
+$ cd fs-survey-app
 
 # Install dependencies in the backend
 $ cd survey-app-backend
