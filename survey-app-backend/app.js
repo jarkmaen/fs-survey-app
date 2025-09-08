@@ -6,6 +6,7 @@ const logger = require('./utils/logger')
 const loginRouter = require('./controllers/login')
 const middleware = require('./utils/middleware')
 const mongoose = require('mongoose')
+const path = require('path')
 const surveysRouter = require('./controllers/surveys')
 const usersRouter = require('./controllers/users')
 
@@ -30,6 +31,13 @@ app.use(middleware.requestLogger)
 app.use('/api/login', loginRouter)
 app.use('/api/surveys', surveysRouter)
 app.use('/api/users', usersRouter)
+
+app.get('*', (request, response, next) => {
+    if (request.path.startsWith('/api')) {
+        return next();
+    }
+    response.sendFile(path.join(__dirname, 'dist/index.html'));
+});
 
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
