@@ -12,7 +12,7 @@ const Header = ({ isHome, logout, user }) => {
         <Navbar className="navbar" style={isHome ? { borderBottom: '1px solid white' } : {}}>
             <Container>
                 <Navbar.Brand as={Link} className="font-weight-bold navbar-title" to="/">
-                    SurveyApp
+                    Survey App
                 </Navbar.Brand>
                 <Navbar.Collapse className="justify-content-end">
                     <Nav>
