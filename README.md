@@ -63,5 +63,5 @@ Once both are running, open http://localhost:5173 in your browser.
 
 ## Documentation
 
-- [User instructions](documentation/kayttoohje.md)
-- [Work hours / project log](documentation/tuntikirjanpito.md)
+- [User guide](documentation/user-guide.md)
+- [Work hours / dev log](documentation/development-log.md)

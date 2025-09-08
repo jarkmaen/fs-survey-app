@@ -1,4 +1,4 @@
-# User instructions
+# User guide
 
 ## Using the application and its features
 
