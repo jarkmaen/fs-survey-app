@@ -1,12 +1,67 @@
-# Full Stack Web Development Project - Survey App
+# Survey App - Full Stack Web Development Project
 
-## General
+## Overview
 
-This survey app was developed for the University of Helsinki Full Stack project course. In the app users can create surveys, respond to them, and view the results. The frontend is built using React and Redux. The backend uses Node.js and Express, and MongoDB for the database.
+A full stack web application for creating, answering and managing surveys. Developed as part of the University of Helsinki Full Stack Project Course.
 
 A live demo of the application can be found here: [https://fs-survey-app.fly.dev](https://fs-survey-app.fly.dev)
 
+## Features
+
+- User authentication (sign up, log in, account management)
+- Create, respond to, close and delete surveys
+- Multiple question types: multiple choice, checkbox, comment box
+- View survey results summary
+- Sorting surveys (latest, name, time)
+
+## Tech stack
+
+- **Frontend:** React, Redux, CSS
+- **Backend:** Node.js, Express
+- **Database:** MongoDB
+- **Other:** REST API, JWT authentication, Fly.io deployment
+
+## How to use
+
+To clone and run this application, you'll need [Git](https://git-scm.com/) and [Node.js](https://nodejs.org/) (which comes with [npm](https://www.npmjs.com/)) installed on your computer. From your terminal:
+
+```
+# Clone this repository
+$ git clone https://github.com/jarkmaen/full-stack-harjoitustyo.git
+
+# Go into the project directory
+$ cd full-stack-harjoitustyo
+
+# Install dependencies in the backend
+$ cd survey-app-backend
+$ npm install
+
+# Install dependencies in the frontend
+$ cd ../survey-app-frontend
+$ npm install
+
+# Create a .env file in the backend directory with the following:
+JWT_SECRET=<your_secret>
+MONGODB_URI=<your_mongodb_uri>
+PORT=3001
+
+# Start the backend
+$ npm start
+
+# In another terminal, start the frontend
+$ cd survey-app-frontend
+$ npm run dev
+```
+
+Once both are running, open http://localhost:5173 in your browser.
+
+## Screenshots
+
+| Home page                         | Creating a survey                              | Viewing results                                  |
+| --------------------------------- | ---------------------------------------------- | ------------------------------------------------ |
+| ![Home page](documentation/images/homepage.png) | ![Survey creation](documentation/images/survey_creation.png) | ![Survey results](documentation/images/survey_results_1.png) |
+
 ## Documentation
 
--   [User instructions](documentation/kayttoohje.md)
--   [Work hours](documentation/tuntikirjanpito.md)
+- [User instructions](documentation/kayttoohje.md)
+- [Work hours / project log](documentation/tuntikirjanpito.md)
