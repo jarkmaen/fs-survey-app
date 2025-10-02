@@ -2,7 +2,7 @@
 
 ## Overview
 
-A full stack web application for creating, answering and managing surveys. Developed as part of the University of Helsinki Full Stack Project Course.
+A full stack web application for creating, answering and managing surveys. Developed as part of the University of Helsinki full stack web development project course.
 
 A live demo of the application can be found here: [https://fs-survey-app.fly.dev](https://fs-survey-app.fly.dev)
 
