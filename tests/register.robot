@@ -15,8 +15,6 @@ ${SIGNUP_BUTTON}    css:button[type="submit"]
 
 *** Test Cases ***
 Registration Works With Valid Input
-    Set Selenium Implicit Wait    ${IMPLICIT_WAIT}
-
     ${RANDOM}=    Evaluate    random.randint(0,1000000)    modules=random
     ${UNIQUE_USERNAME}=    Set Variable    ${USERNAME}${RANDOM}
 
@@ -33,8 +31,6 @@ Registration Works With Valid Input
     Wait Until Page Contains Element    xpath=//a[contains(@class,"dropdown-item") and text()="Logout"]    timeout=${TIMEOUT}
 
 Registration Fails With Empty Fields
-    Set Selenium Implicit Wait    ${IMPLICIT_WAIT}
-
     Click Button    ${SIGNUP_BUTTON}
 
     Wait Until Page Contains    Name must be at least 2 characters long.    timeout=${TIMEOUT}
@@ -42,8 +38,6 @@ Registration Fails With Empty Fields
     Wait Until Page Contains    Password must be at least 8 characters long.    timeout=${TIMEOUT}
 
 Registration Fails With Existing Username
-    Set Selenium Implicit Wait    ${IMPLICIT_WAIT}
-
     Input Text    ${NAME_FIELD}    ${NAME}
     Input Text    ${USERNAME_FIELD}    test
     Input Text    ${PASSWORD_FIELD}    ${PASSWORD}
@@ -52,8 +46,6 @@ Registration Fails With Existing Username
     Wait Until Page Contains    This username is already taken.    timeout=${TIMEOUT}
 
 Registration Fails With Short Password
-    Set Selenium Implicit Wait    ${IMPLICIT_WAIT}
-
     Input Text    ${NAME_FIELD}    ${NAME}
     Input Text    ${USERNAME_FIELD}    gJrxKb3AAdrikLcw
     Input Text    ${PASSWORD_FIELD}    test

@@ -1,3 +1,6 @@
+*** Settings ***
+Library    SeleniumLibrary    implicit_wait=${IMPLICIT_WAIT}
+
 *** Variables ***
 ${BROWSER}    Firefox
 ${IMPLICIT_WAIT}    5s

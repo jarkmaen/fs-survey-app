@@ -13,8 +13,6 @@ ${LOGIN_BUTTON}    css:button[type="submit"]
 
 *** Test Cases ***
 Login Works With Correct Credentials
-    Set Selenium Implicit Wait    ${IMPLICIT_WAIT}
-
     Input Text    ${USERNAME_FIELD}    ${USERNAME}
     Input Text    ${PASSWORD_FIELD}    ${PASSWORD}
     Click Button    ${LOGIN_BUTTON}
@@ -26,8 +24,6 @@ Login Works With Correct Credentials
     Wait Until Page Contains Element    xpath=//a[contains(@class,"dropdown-item") and text()="Logout"]    timeout=${TIMEOUT}
 
 Login Fails With Wrong Credentials
-    Set Selenium Implicit Wait    ${IMPLICIT_WAIT}
-
     Input Text    ${USERNAME_FIELD}    non
     Input Text    ${PASSWORD_FIELD}    sense
     Click Button    ${LOGIN_BUTTON}
