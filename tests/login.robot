@@ -17,7 +17,7 @@ Login Works With Correct Credentials
 
     Input Text    ${USERNAME_FIELD}    ${USERNAME}
     Input Text    ${PASSWORD_FIELD}    ${PASSWORD}
-    Click button    ${LOGIN_BUTTON}
+    Click Button    ${LOGIN_BUTTON}
 
     Wait Until Page Contains    Signed in as:    timeout=${TIMEOUT}
     Wait Until Page Contains    ${USERNAME}    timeout=${TIMEOUT}
