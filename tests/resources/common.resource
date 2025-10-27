@@ -6,5 +6,6 @@ ${BROWSER}    Firefox
 ${IMPLICIT_WAIT}    5s
 ${TIMEOUT}    5s
 ${URL}    http://localhost:5173
+${URL_ACCOUNT_SETTINGS}    ${URL}/account-settings
 ${URL_LOGIN}    ${URL}/login
 ${URL_SIGNUP}    ${URL}/signup
