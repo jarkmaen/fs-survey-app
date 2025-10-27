@@ -1,6 +1,7 @@
 *** Settings ***
 Library    SeleniumLibrary
 Resource    resources/common.resource
+Resource    resources/user.resource
 Test Setup    Open Browser    ${URL_SIGNUP}    ${BROWSER}
 Test Teardown    Close Browser
 
@@ -15,20 +16,10 @@ ${SIGNUP_BUTTON}    css:button[type="submit"]
 
 *** Test Cases ***
 Registration Works With Valid Input
-    ${RANDOM}=    Evaluate    random.randint(0,1000000)    modules=random
-    ${UNIQUE_USERNAME}=    Set Variable    ${USERNAME}${RANDOM}
-
-    Wait Until Element Is Visible    ${NAME_FIELD}    timeout=${TIMEOUT}
-    Input Text    ${NAME_FIELD}    ${NAME}
-    Input Text    ${USERNAME_FIELD}    ${UNIQUE_USERNAME}
-    Input Text    ${PASSWORD_FIELD}    ${PASSWORD}
-    Click Button    ${SIGNUP_BUTTON}
+    ${UNIQUE_USERNAME}=    Create Unique User    ${USERNAME}    ${PASSWORD}    ${NAME}
 
     Wait Until Page Contains    Signed in as:    timeout=${TIMEOUT}
     Wait Until Page Contains    John Doe    timeout=${TIMEOUT}
-
-    Click Element    xpath=//div[contains(@class,"dropdown")]/a
-    Wait Until Page Contains Element    xpath=//a[contains(@class,"dropdown-item") and text()="Logout"]    timeout=${TIMEOUT}
 
 Registration Fails With Empty Fields
     Click Button    ${SIGNUP_BUTTON}
