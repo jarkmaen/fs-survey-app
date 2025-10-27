@@ -1,6 +1,7 @@
 *** Settings ***
 Library    SeleniumLibrary
 Resource    resources/common.resource
+Resource    resources/user.resource
 Test Setup    Open Browser    ${URL_LOGIN}    ${BROWSER}
 Test Teardown    Close Browser
 
@@ -13,9 +14,7 @@ ${LOGIN_BUTTON}    css:button[type="submit"]
 
 *** Test Cases ***
 Login Works With Correct Credentials
-    Input Text    ${USERNAME_FIELD}    ${USERNAME}
-    Input Text    ${PASSWORD_FIELD}    ${PASSWORD}
-    Click Button    ${LOGIN_BUTTON}
+    Login With Credentials    ${USERNAME}    ${PASSWORD}
 
     Wait Until Page Contains    Signed in as:    timeout=${TIMEOUT}
     Wait Until Page Contains    ${USERNAME}    timeout=${TIMEOUT}
@@ -24,8 +23,6 @@ Login Works With Correct Credentials
     Wait Until Page Contains Element    xpath=//a[contains(@class,"dropdown-item") and text()="Logout"]    timeout=${TIMEOUT}
 
 Login Fails With Wrong Credentials
-    Input Text    ${USERNAME_FIELD}    non
-    Input Text    ${PASSWORD_FIELD}    sense
-    Click Button    ${LOGIN_BUTTON}
+    Login With Credentials    non    sense
 
     Wait Until Page Contains    Incorrect username or password.    timeout=${TIMEOUT}

@@ -25,3 +25,13 @@ Create Unique User
     Register New User    ${name}    ${UNIQUE_USERNAME}    ${password}
 
     [Return]    ${UNIQUE_USERNAME}
+
+Login With Credentials
+    [Arguments]    ${USERNAME}    ${PASSWORD}
+
+    Go To    ${URL_LOGIN}
+
+    Wait Until Element Is Visible    css:input[placeholder="Please enter your username"]    timeout=${TIMEOUT}
+    Input Text    css:input[placeholder="Please enter your username"]    ${USERNAME}
+    Input Text    css:input[placeholder="Please enter your password"]    ${PASSWORD}
+    Click Button    css:button[type="submit"]
