@@ -7,7 +7,7 @@ Test Teardown    Close Browser
 
 *** Variables ***
 ${NAME}    John Doe
-${USERNAME}    johndoe
+${USERNAME}    test
 ${PASSWORD}    test1234
 ${NAME_FIELD}    css:input[placeholder="Please enter your name"]
 ${USERNAME_FIELD}    css:input[placeholder="Please enter your username"]
