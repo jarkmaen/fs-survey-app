@@ -6,7 +6,10 @@ Resource    user.resource
 ${TITLE_FIELD}    css:input[placeholder="Survey Title"]
 ${DESCRIPTION_FIELD}    css:input[placeholder="Description"]
 ${QUESTION_INPUT}    css:input[placeholder="Question"]
+${QUESTION_TEXT}    What is your favorite color?
 ${OPTION_INPUT}    css:input[placeholder="Option"]
+${OPTION_TEXT}    Red
+${CREATE_SURVEY_BUTTON}    css:button[type="submit"]
 
 *** Keywords ***
 Open Create Survey Page

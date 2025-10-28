@@ -11,9 +11,6 @@ ${PASSWORD}    test1234
 
 ${TITLE}    Title
 ${DESCRIPTION}    Description
-${QUESTION_TEXT}    What is your favorite color?
-${OPTION_TEXT}    Red
-${CREATE_SURVEY_BUTTON}    css:button[type="submit"]
 ${ADD_QUESTION_BUTTON}    xpath=//button[text()="Add Question"]
 
 *** Test Cases ***
