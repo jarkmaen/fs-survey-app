@@ -1,40 +1,61 @@
 *** Settings ***
+Library    RequestsLibrary
 Resource    common.resource
 
+*** Variables ***
+${NAME_FIELD}    css:input[placeholder="Please enter your name"]
+${PASSWORD_FIELD}    css:input[placeholder="Please enter your password"]
+${SUBMIT_BUTTON}    css:button[type="submit"]
+${USERNAME_FIELD}    css:input[placeholder="Please enter your username"]
+
 *** Keywords ***
-Register New User
-    [Arguments]    ${NAME}    ${USERNAME}    ${PASSWORD}
-
-    Go To    ${URL_SIGNUP}
-
-    Wait Until Element Is Visible    css:input[placeholder="Please enter your name"]    timeout=${TIMEOUT}
-    Input Text    css:input[placeholder="Please enter your name"]    ${NAME}
-    Input Text    css:input[placeholder="Please enter your username"]    ${USERNAME}
-    Input Text    css:input[placeholder="Please enter your password"]    ${PASSWORD}
-    Click Button    css:button[type="submit"]
-
-    Wait Until Page Contains    Signed in as:    timeout=${TIMEOUT}
-    Wait Until Page Contains    ${NAME}    timeout=${TIMEOUT}
-
 Create Unique User
-    [Arguments]    ${USERNAME}    ${password}=${PASSWORD}    ${name}=${NAME}
-
-    ${RANDOM}=    Evaluate    random.randint(0,1000000)    modules=random
-    ${UNIQUE_USERNAME}=    Set Variable    ${USERNAME}${RANDOM}
-
-    Register New User    ${name}    ${UNIQUE_USERNAME}    ${password}
-
-    RETURN    ${UNIQUE_USERNAME}
+    ${random}=    Evaluate    random.randint(0,1000000)    modules=random
+    ${unique_username}=    Set Variable    ${TEST_ACCOUNT_USERNAME}-${random}
+    Register New User    ${TEST_ACCOUNT_NAME}    ${unique_username}    ${TEST_ACCOUNT_PASSWORD}
+    RETURN    ${unique_username}
 
 Login With Credentials
-    [Arguments]    ${USERNAME}    ${PASSWORD}
-
+    [Arguments]    ${username}    ${password}
     Go To    ${URL_LOGIN}
+    Wait Until Element Is Visible    ${USERNAME_FIELD}
+    Input Text    ${USERNAME_FIELD}    ${username}
+    Input Text    ${PASSWORD_FIELD}    ${password}
+    Sleep    5s
+    Click Button    ${SUBMIT_BUTTON}
+    ${login}=    Run Keyword And Return Status    Wait Until Page Contains    Signed in as:
+    RETURN    ${login}
 
-    Wait Until Element Is Visible    css:input[placeholder="Please enter your username"]    timeout=${TIMEOUT}
-    Input Text    css:input[placeholder="Please enter your username"]    ${USERNAME}
-    Input Text    css:input[placeholder="Please enter your password"]    ${PASSWORD}
-    Click Button    css:button[type="submit"]
+Logout Current User
+    Click Element    xpath=//div[contains(@class,"dropdown")]/a
+    Wait Until Page Contains Element    xpath=//a[contains(@class,"dropdown-item") and text()="Logout"]
+    Click Element    xpath=//a[contains(@class,"dropdown-item") and text()="Logout"]
+    Wait Until Page Contains    Log in or Sign up
 
-    Wait Until Page Contains    Signed in as:    timeout=${TIMEOUT}
-    Wait Until Page Contains    test    timeout=${TIMEOUT}
+Make Sure Test Account Exists
+    Create Session    session    ${URL_API}
+    ${response}=    GET On Session    session    /users
+    Should Be Equal As Integers    ${response.status_code}    200
+    ${accounts}=    Set Variable    ${response.json()}
+    ${exists}=    Set Variable    ${False}
+    FOR    ${account}    IN    @{accounts}
+        IF    "${account['username']}" == "${TEST_ACCOUNT_USERNAME}"
+            Set Test Variable    ${exists}    ${True}
+            Exit For Loop
+        END
+    END
+    IF    ${exists} == ${False}
+        Register New User    ${TEST_ACCOUNT_NAME}    ${TEST_ACCOUNT_USERNAME}    ${TEST_ACCOUNT_PASSWORD}
+        Logout Current User
+    END
+
+Register New User
+    [Arguments]    ${name}    ${username}    ${password}
+    Go To    ${URL_SIGNUP}
+    Wait Until Element Is Visible    ${NAME_FIELD}
+    Input Text    ${NAME_FIELD}    ${name}
+    Input Text    ${USERNAME_FIELD}    ${username}
+    Input Text    ${PASSWORD_FIELD}    ${password}
+    Click Button    ${SUBMIT_BUTTON}
+    Wait Until Page Contains    Signed in as:
+    Wait Until Page Contains    ${NAME}
