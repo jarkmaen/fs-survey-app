@@ -16,9 +16,10 @@ ${URL}    http://localhost:5173
 
 *** Keywords ***
 Clean Up Test Environment
-    Logout Current User
     Close Browser
 
 Prepare Test Environment
+    [Arguments]    ${url}
     Open Browser    ${URL}    ${BROWSER}
     Make Sure Test Account Exists
+    Go To    ${url}

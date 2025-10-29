@@ -11,9 +11,10 @@ ${USERNAME_FIELD}    css:input[placeholder="Please enter your username"]
 *** Keywords ***
 Create Unique User
     ${random}=    Evaluate    random.randint(0,1000000)    modules=random
+    ${unique_name}=    Set Variable    ${TEST_ACCOUNT_NAME}-${random}
     ${unique_username}=    Set Variable    ${TEST_ACCOUNT_USERNAME}-${random}
-    Register New User    ${TEST_ACCOUNT_NAME}    ${unique_username}    ${TEST_ACCOUNT_PASSWORD}
-    RETURN    ${unique_username}
+    Register New User    ${unique_name}    ${unique_username}    ${TEST_ACCOUNT_PASSWORD}
+    RETURN    ${unique_name}
 
 Login With Credentials
     [Arguments]    ${username}    ${password}
