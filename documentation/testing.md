@@ -45,10 +45,9 @@ $ source venv/bin/activate
 
 # Install dependencies
 $ pip install robotframework robotframework-requests robotframework-seleniumlibrary
-
 ```
 
-Before running the tests, make sure both the backend and frontend are running. You can find the instructions for starting the application in the [How to use](../README.md#how-to-use) section of the project README.
+And before running the actual tests, make sure both the backend and frontend are running. You can find the instructions for starting the application in the [How to use](../README.md#how-to-use) section of the project README.
 
 Once both are running, execute the Robot tests:
 
