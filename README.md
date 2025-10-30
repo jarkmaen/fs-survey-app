@@ -19,7 +19,7 @@ A live demo of the application can be found here: [https://fs-survey-app.fly.dev
 - **Frontend:** React, Redux, CSS
 - **Backend:** Node.js, Express
 - **Database:** MongoDB
-- **Other:** REST API, JWT authentication, Fly.io deployment
+- **Other:** REST API, Robot Framework
 
 ## How to use
 
@@ -63,5 +63,6 @@ Once both are running, open http://localhost:5173 in your browser.
 
 ## Documentation
 
+- [Testing](documentation/testing.md)
 - [User guide](documentation/user-guide.md)
 - [Work hours / dev log](documentation/development-log.md)
