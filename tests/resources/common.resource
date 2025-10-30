@@ -4,6 +4,7 @@ Resource    user.resource
 
 *** Variables ***
 ${BROWSER}    Firefox
+${SUBMIT_BUTTON}    css:button[type="submit"]
 ${TEST_ACCOUNT_NAME}    Test Account
 ${TEST_ACCOUNT_PASSWORD}    test1234
 ${TEST_ACCOUNT_USERNAME}    test_account
@@ -18,8 +19,12 @@ ${URL}    http://localhost:5173
 Clean Up Test Environment
     Close Browser
 
+Close Notification Popup
+    Run Keyword And Ignore Error    Click Element    xpath=//div[contains(@class,"notification-alert-container")]//button[contains(@class,"btn-close")]
+    Wait Until Page Does Not Contain Element    xpath=//div[contains(@class,"notification-alert-container")]
+
 Prepare Test Environment
-    [Arguments]    ${url}
+    [Arguments]    ${url}=${URL}
     Open Browser    ${URL}    ${BROWSER}
     Make Sure Test Account Exists
     Go To    ${url}

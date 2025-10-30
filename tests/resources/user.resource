@@ -3,9 +3,10 @@ Library    RequestsLibrary
 Resource    common.resource
 
 *** Variables ***
+${DELETE_ACCOUNT_BUTTON}    xpath=//button[text()="Delete Account"]
+${DELETE_ACCOUNT_ITEM}    xpath=//div[contains(@class,"account-settings-item") and .//span[contains(., "Delete Account")]]
 ${NAME_FIELD}    css:input[placeholder="Please enter your name"]
 ${PASSWORD_FIELD}    css:input[placeholder="Please enter your password"]
-${SUBMIT_BUTTON}    css:button[type="submit"]
 ${USERNAME_FIELD}    css:input[placeholder="Please enter your username"]
 
 *** Keywords ***
@@ -16,13 +17,20 @@ Create Unique User
     Register New User    ${unique_name}    ${unique_username}    ${TEST_ACCOUNT_PASSWORD}
     RETURN    ${unique_name}
 
+Delete Current User
+    Go To    ${URL_ACCOUNT_SETTINGS}
+    Wait Until Element Is Visible    ${DELETE_ACCOUNT_ITEM}
+    Click Element    ${DELETE_ACCOUNT_ITEM}
+    Wait Until Element Is Visible    ${DELETE_ACCOUNT_BUTTON}
+    Click Button    ${DELETE_ACCOUNT_BUTTON}
+    Wait Until Location Contains    ${URL}
+
 Login With Credentials
     [Arguments]    ${username}    ${password}
     Go To    ${URL_LOGIN}
     Wait Until Element Is Visible    ${USERNAME_FIELD}
     Input Text    ${USERNAME_FIELD}    ${username}
     Input Text    ${PASSWORD_FIELD}    ${password}
-    Sleep    5s
     Click Button    ${SUBMIT_BUTTON}
     ${login}=    Run Keyword And Return Status    Wait Until Page Contains    Signed in as:
     RETURN    ${login}
@@ -59,4 +67,4 @@ Register New User
     Input Text    ${PASSWORD_FIELD}    ${password}
     Click Button    ${SUBMIT_BUTTON}
     Wait Until Page Contains    Signed in as:
-    Wait Until Page Contains    ${NAME}
+    Wait Until Page Contains    ${name}

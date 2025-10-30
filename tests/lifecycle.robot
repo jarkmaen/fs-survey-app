@@ -2,90 +2,67 @@
 Library    SeleniumLibrary
 Resource    resources/common.resource
 Resource    resources/survey.resource
-Resource    resources/user.resource
-Test Setup    Open Browser    ${URL}    ${BROWSER}
-Test Teardown    Close Browser
-
-*** Variables ***
-${NAME}    John Doe
-${USERNAME}    test
-${PASSWORD}    test1234
-
-${TITLE}    Lifecycle Survey
-${DESCRIPTION}    E2E test
-${DELETE_ACCOUNT_ITEM}    xpath=//div[contains(@class,"account-settings-item") and .//span[contains(., "Delete Account")]]
-${DELETE_ACCOUNT_BUTTON}    xpath=//button[text()="Delete Account"]
+Test Setup    Prepare Test Environment
+Test Teardown    Clean Up Test Environment
 
 *** Test Cases ***
-Survey Creation, Response, Results And Deletion
-    Open Create Survey Page    ${USERNAME}    ${PASSWORD}
-    Fill Basic Survey Info    ${TITLE}    ${DESCRIPTION}
-    Fill First Question With Option    ${QUESTION_TEXT}    ${OPTION_TEXT}
+Deleting Account Removes Created Surveys
+    # first make sure all test surveys are deleted
+    Delete All Test Account Surveys
 
-    Click Button    ${CREATE_SURVEY_BUTTON}
-    Wait Until Location Contains    ${URL}    timeout=${TIMEOUT}
-
-    # open survey from list and submit a response
-    Wait Until Element Is Visible    xpath=//p[contains(@class,"survey-card-title") and text()="${TITLE}"]    timeout=${TIMEOUT}
-    Click Element    xpath=//p[contains(@class,"survey-card-title") and text()="${TITLE}"]/ancestor::div[contains(@class,"survey-card")]//a[contains(@class,"survey-card-button")]
-
-    Wait Until Element Is Visible    xpath=//input[@type="radio" and @value="${OPTION_TEXT}"]    timeout=${TIMEOUT}
-    Click Element    xpath=//input[@type="radio" and @value="${OPTION_TEXT}"]
-    Click Button    css:button[type="submit"]
-
-    # survey creator must close the survey before results are visible -> return to list and close it
+    # create new user and make two surveys
+    ${unique_name}=    Create Unique User
     Go To    ${URL}
-    Wait Until Element Is Visible    xpath=//p[contains(@class,"survey-card-title") and text()="${TITLE}"]    timeout=${TIMEOUT}
-    Click Element    xpath=//p[contains(@class,"survey-card-title") and text()="${TITLE}"]/ancestor::div[contains(@class,"survey-card")]//button[contains(@class,"btn-danger")]
+    ${before}=    Get Element Count    ${SURVEY_CARD}
+    Fill Survey With Dummy Data
+    Click Button    ${SUBMIT_BUTTON}
+    Wait Until Location Contains    ${URL}
+    Fill Survey With Dummy Data
+    Click Button    ${SUBMIT_BUTTON}
+    Wait Until Location Contains    ${URL}
+    Wait Until Element Is Visible    ${SURVEY_CARD}
+    ${after}=    Get Element Count    ${SURVEY_CARD}
+    Should Be True    ${after} == ${before} + 2
 
-    # open Closed Surveys tab and view results
-    Run Keyword And Ignore Error    Click Element    xpath=//a[@data-rr-ui-event-key="closed" or text()="Closed Surveys"]
-    Wait Until Element Is Visible    xpath=//p[contains(@class,"survey-card-title") and text()="${TITLE}"]    timeout=${TIMEOUT}
-    Click Element    xpath=//p[contains(@class,"survey-card-title") and text()="${TITLE}"]/ancestor::div[contains(@class,"survey-card")]//a[contains(normalize-space(.),"View Results")]
+    # delete user and confirm surveys are removed
+    Delete Current User
+    Wait Until Location Contains    ${URL}
+    Wait Until Element Is Not Visible    ${SURVEY_CARD}
+    ${after_delete}=    Get Element Count    ${SURVEY_CARD}
+    Should Be True    ${after_delete} == ${before}
 
-    # verify results content
-    Wait Until Page Contains    ${OPTION_TEXT} (1)    timeout=${TIMEOUT}
-    Wait Until Page Contains    100.00%    timeout=${TIMEOUT}
+Survey Creation, Response, Results And Deletion
+    # first make sure all test surveys are deleted
+    Delete All Test Account Surveys
 
-    # delete the survey from results page and confirm removal
-    Click Button    xpath=//button[contains(@class,"btn-danger")]
-    Sleep    0.1s
-    Alert Should Be Present    Are you sure you want to remove '${TITLE}'?    timeout=${TIMEOUT}
+    # make test account and create survey for testing
+    Make Sure Test Account Exists
+    Login With Credentials    ${TEST_ACCOUNT_USERNAME}    ${TEST_ACCOUNT_PASSWORD}
+    Fill Survey With Dummy Data
+    Click Button    ${SUBMIT_BUTTON}
+    Wait Until Location Contains    ${URL}
 
-    Wait Until Element Is Visible    xpath=//div[contains(@class,"notification-alert-success")]    10s
+    # find newly created survey and submit response
+    Find Survey Card And Close/Take/View Survey    ${TITLE}    Take Survey
+    Wait Until Element Is Visible    xpath=//input[@type="radio" and @value="${OPTION_1}"]
+    Click Element    xpath=//input[@type="radio" and @value="${OPTION_1}"]
+    Click Button    ${SUBMIT_BUTTON}
+    Close Notification Popup
+
+    # close survey and go to "Closed Surveys" tab to view results
+    Find Survey Card And Close/Take/View Survey    ${TITLE}    Close Survey
+    Click Element    xpath=//a[@data-rr-ui-event-key="closed"]
+    Find Survey Card And Close/Take/View Survey    ${TITLE}    View Results
+
+    # verify results
+    Wait Until Page Contains    ${OPTION_1} (1)
+    Wait Until Page Contains    100.00%
+    Wait Until Page Contains    ${OPTION_2} (0)
+    Wait Until Page Contains    0.00%
+
+    # delete survey from view results page and confirm removal
+    Click Button    ${DELETE_SURVEY_BUTTON}
+    Alert Should Be Present    Are you sure you want to remove '${TITLE}'?
+    Wait Until Element Is Visible    xpath=//div[contains(@class,"notification-alert-success")]
     Element Should Contain    xpath=//div[contains(@class,"notification-alert-success")]    Survey removed successfully!
-    Wait Until Page Does Not Contain    ${TITLE}    timeout=${TIMEOUT}
-
-Account Deletion Removes Created Surveys
-    ${UNIQUE_USERNAME}=    Create Unique User    ${USERNAME}    ${PASSWORD}    ${NAME}
-
-    # create first survey
-    Go To    ${URL_CREATE_SURVEY}
-
-    Fill Basic Survey Info    ${TITLE}-1    ${DESCRIPTION}-1
-    Fill First Question With Option    ${QUESTION_TEXT}-1    ${OPTION_TEXT}-1
-
-    Click Button    ${CREATE_SURVEY_BUTTON}
-    Wait Until Location Contains    ${URL}    timeout=${TIMEOUT}
-
-    # create second survey
-    Go To    ${URL_CREATE_SURVEY}
-
-    Fill Basic Survey Info    ${TITLE}-2    ${DESCRIPTION}-2
-    Fill First Question With Option    ${QUESTION_TEXT}-2    ${OPTION_TEXT}-2
-
-    Click Button    ${CREATE_SURVEY_BUTTON}
-    Wait Until Location Contains    ${URL}    timeout=${TIMEOUT}
-
-    # delete account and ensure surveys removed
-    Go To    ${URL_ACCOUNT_SETTINGS}
-
-    Wait Until Element Is Visible    ${DELETE_ACCOUNT_ITEM}    timeout=${TIMEOUT}
-    Click Element    ${DELETE_ACCOUNT_ITEM}
-
-    Wait Until Element Is Visible    ${DELETE_ACCOUNT_BUTTON}    timeout=${TIMEOUT}
-    Click Button    ${DELETE_ACCOUNT_BUTTON}
-
-    Wait Until Location Contains    ${URL}    timeout=${TIMEOUT}
-    Wait Until Page Does Not Contain    ${TITLE}-1    timeout=${TIMEOUT}
-    Wait Until Page Does Not Contain    ${TITLE}-2    timeout=${TIMEOUT}
+    Wait Until Page Does Not Contain    ${TITLE}
