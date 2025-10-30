@@ -17,9 +17,9 @@ A live demo of the application can be found here: [https://fs-survey-app.fly.dev
 ## Tech stack
 
 - **Frontend:** React, Redux, CSS
-- **Backend:** Node.js, Express
+- **Backend:** Node.js, Express, REST API
 - **Database:** MongoDB
-- **Other:** Robot Framework, REST API
+- **Testing:** Robot Framework
 
 ## How to use
 
