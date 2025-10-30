@@ -71,11 +71,11 @@ Sorting By Latest, Name And Time Works
     # back to default value
     Set Global Variable    ${TITLE}    Morning Drink Preference
 
-Switching Between Activate And Closed Surveys Works
+Switching Between Active And Closed Surveys Works
     # first make sure all test surveys are deleted
     Delete All Test Account Surveys
 
-    # make test account and create one activate and one closed survey
+    # make test account and create one active and one closed survey
     Make Sure Test Account Exists
     Login With Credentials    ${TEST_ACCOUNT_USERNAME}    ${TEST_ACCOUNT_PASSWORD}
     Fill Survey With Dummy Data
