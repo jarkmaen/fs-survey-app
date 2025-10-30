@@ -2,9 +2,11 @@
 Resource    common.resource
 
 *** Variables ***
+${ACTIVE_SURVEYS_BUTTON}    xpath=//a[@data-rr-ui-event-key="active"]
 ${ADD_OPTION_BUTTON}    xpath=//span[contains(@class,"question-form-text") and text()="Add option"]
 ${ADD_OTHER_BUTTON}    xpath=//span[contains(@class,"question-form-text") and text()='Add "Other"']
 ${ADD_QUESTION_BUTTON}    xpath=//button[text()="Add Question"]
+${CLOSED_SURVEYS_BUTTON}    xpath=//a[@data-rr-ui-event-key="closed"]
 ${DELETE_OPTION_BUTTON}    xpath=//div[contains(@class,"question-form")]//button[contains(@class,"btn-link")]
 ${DELETE_QUESTION_BUTTON}    xpath=//button[contains(@class,"question-form-delete") and contains(.,"Delete")]
 ${DELETE_SURVEY_BUTTON}    xpath=//button[contains(@class,"btn-danger") and text()="Delete Survey"]
@@ -16,7 +18,8 @@ ${OPTION_2}    Tea
 ${OPTION_FIELD}    xpath=//input[@placeholder="Option"]
 ${QUESTION_FIELD}    xpath=//input[@placeholder="Question"]
 ${QUESTION}    Which drink do you prefer in the morning?
-${SURVEY_CARD}    xpath=//p[contains(@class,"survey-card-title") and text()="${TITLE}"]
+${SURVEY_CARD_TIME}    xpath=//p[contains(@class,"survey-card-time")]
+${SURVEY_CARD_TITLE}    xpath=//p[contains(@class,"survey-card-title") and text()="${TITLE}"]
 ${TITLE_FIELD}    css:input[placeholder="Survey Title"]
 ${TITLE}    Morning Drink Preference
 
@@ -40,6 +43,11 @@ Add New Option
     ${web_elements}=    Get WebElements    ${OPTION_FIELD}
     Input Text    ${web_elements[-1]}    ${option}
 
+Convert Time String To Float
+    [Arguments]    ${time_string}
+    ${float}=    Evaluate    float(re.search(r"(\\d+\\.?\\d*)", "${time_string}").group(1))    modules=re
+    RETURN    ${float}
+
 Fill Survey With Dummy Data
     [Arguments]    ${survey_title}=${TITLE}
     Go To    ${URL_CREATE_SURVEY}
@@ -60,3 +68,10 @@ Find Survey Card And Close/Take/View Survey
 Delete All Test Account Surveys
     Login With Credentials    ${TEST_ACCOUNT_USERNAME}    ${TEST_ACCOUNT_PASSWORD}
     Delete Current User
+
+Sort Surveys By Latest/Name/Time
+    [Arguments]    ${action}
+    Wait Until Element Is Visible    xpath=//button[contains(@class,"dropdown-toggle")]
+    Click Element    xpath=//button[contains(@class,"dropdown-toggle")]
+    Wait Until Element Is Visible    xpath=//a[contains(@class,"dropdown-item") and text()="${action}"]
+    Click Element    xpath=//a[contains(@class,"dropdown-item") and text()="${action}"]

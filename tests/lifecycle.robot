@@ -13,22 +13,22 @@ Deleting Account Removes Created Surveys
     # create new user and make two surveys
     ${unique_name}=    Create Unique User
     Go To    ${URL}
-    ${before}=    Get Element Count    ${SURVEY_CARD}
+    ${before}=    Get Element Count    ${SURVEY_CARD_TITLE}
     Fill Survey With Dummy Data
     Click Button    ${SUBMIT_BUTTON}
     Wait Until Location Contains    ${URL}
     Fill Survey With Dummy Data
     Click Button    ${SUBMIT_BUTTON}
     Wait Until Location Contains    ${URL}
-    Wait Until Element Is Visible    ${SURVEY_CARD}
-    ${after}=    Get Element Count    ${SURVEY_CARD}
+    Wait Until Element Is Visible    ${SURVEY_CARD_TITLE}
+    ${after}=    Get Element Count    ${SURVEY_CARD_TITLE}
     Should Be True    ${after} == ${before} + 2
 
     # delete user and confirm surveys are removed
     Delete Current User
     Wait Until Location Contains    ${URL}
-    Wait Until Element Is Not Visible    ${SURVEY_CARD}
-    ${after_delete}=    Get Element Count    ${SURVEY_CARD}
+    Wait Until Element Is Not Visible    ${SURVEY_CARD_TITLE}
+    ${after_delete}=    Get Element Count    ${SURVEY_CARD_TITLE}
     Should Be True    ${after_delete} == ${before}
 
 Survey Creation, Response, Results And Deletion
@@ -47,7 +47,7 @@ Survey Creation, Response, Results And Deletion
     Wait Until Element Is Visible    xpath=//input[@type="radio" and @value="${OPTION_1}"]
     Click Element    xpath=//input[@type="radio" and @value="${OPTION_1}"]
     Click Button    ${SUBMIT_BUTTON}
-    Close Notification Popup
+    Close Notification Popup If Visible
 
     # close survey and go to "Closed Surveys" tab to view results
     Find Survey Card And Close/Take/View Survey    ${TITLE}    Close Survey

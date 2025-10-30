@@ -37,7 +37,7 @@ Login With Credentials
 
 Logout Current User
     Click Element    xpath=//div[contains(@class,"dropdown")]/a
-    Wait Until Page Contains Element    xpath=//a[contains(@class,"dropdown-item") and text()="Logout"]
+    Wait Until Element Is Visible    xpath=//a[contains(@class,"dropdown-item") and text()="Logout"]
     Click Element    xpath=//a[contains(@class,"dropdown-item") and text()="Logout"]
     Wait Until Page Contains    Log in or Sign up
 
