@@ -6,6 +6,8 @@ A full stack web application for creating, answering and managing surveys. Devel
 
 A live demo of the application can be found here: [https://fs-survey-app.fly.dev](https://fs-survey-app.fly.dev)
 
+**Note:** Hosted on the free tier of Fly.io so the initial boot up may take a minute or two.
+
 ## Features
 
 - User authentication (sign up, log in, account management)
