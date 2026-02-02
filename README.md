@@ -4,9 +4,7 @@
 
 A full stack web application for creating, answering and managing surveys. Developed as part of the University of Helsinki full stack web development project course.
 
-A live demo of the application can be found here: [https://fs-survey-app.fly.dev](https://fs-survey-app.fly.dev)
-
-**Note:** Hosted on the free tier of Fly.io so the initial boot up may take a minute or two.
+A live demo of the application can be found here: [https://fs-survey-app.fly.dev](https://fs-survey-app.fly.dev) (_Note: It might take a minute or two to load as the demo is hosted on Fly.io's free tier._)
 
 ## Features
 
