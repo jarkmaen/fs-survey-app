@@ -1,10 +1,10 @@
 # Testing
 
-The application was tested using end-to-end tests with Robot Framework and SeleniumLibrary.
+The application was tested using Robot Framework and SeleniumLibrary.
 
-## End-to-end testing
+## End-to-end (E2E) testing
 
-In total, 17 test cases were made to test all core functionalities. Here are the features that were tested:
+There are 17 E2E test cases in total to make sure the entire application works correctly from a user's perspective.
 
 ### Account management (account.robot)
 
@@ -30,11 +30,11 @@ In total, 17 test cases were made to test all core functionalities. Here are the
 ### User authentication (login.robot, register.robot)
 
 - Logging in with correct credentials
-- Registering a user with validation
+- Registering a new user with validation
 
 ## Running the tests
 
-To run the tests, first make sure you have [Python](https://www.python.org/) installed on your computer. Then after that, navigate to the project root and run these commands from your terminal:
+To run the following commands below, you'll need to have [Python](https://www.python.org/) installed on your computer. From your terminal:
 
 ```
 # Create a virtual environment
@@ -47,14 +47,14 @@ $ source venv/bin/activate
 $ pip install robotframework robotframework-requests robotframework-seleniumlibrary
 ```
 
-And before running the actual tests, make sure both the backend and frontend are running. You can find the instructions for starting the application in the [How to use](../README.md#how-to-use) section of the project README.
+Before running the tests, make sure both the backend and the frontend are running. Instructions for starting the application can be found in the [How to use](../README.md#how-to-use) section of the README.
 
-Once both are running, execute the Robot tests:
+Once both are running, run the tests:
 
 ```
 $ robot --outputdir tests/results tests
 ```
 
-The test results can be found in the tests/results/ directory as log.html and report.html. Here's an example of what the log file looks like:
+The test results are generated in the tests/results/ directory as log.html and report.html. Below is an example of the log.html output:
 
 <img src="images/test_log.png">

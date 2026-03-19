@@ -1,6 +1,6 @@
 # Development log
 
-**Note:** This log was intended for the Full Stack Open project course. I've continued the project since then, but I'm no longer logging progress here. Check the commit history for the most recent updates.
+Note: This log was for the Full Stack Open project course. I've continued the project since then, but I'm no longer logging progress here. Check the commit history for the most recent changes.
 
 | Date    | Hours  | Description |
 | ------- | ------ | ----------- |
