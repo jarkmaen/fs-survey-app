@@ -14,7 +14,7 @@ A full stack web application for creating, answering and managing surveys. Devel
 
 ## Tech stack
 
-- **Frontend:** React, Redux, CSS
+- **Frontend:** React, Redux, Bootstrap
 - **Backend:** Node.js, Express, REST API
 - **Database:** MongoDB
 - **Testing:** Robot Framework
