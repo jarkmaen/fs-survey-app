@@ -34,7 +34,7 @@ There are 17 E2E test cases in total to make sure the entire application works c
 
 ## Running the tests
 
-To run the following commands below, you'll need to have [Python](https://www.python.org/) installed on your computer. From your terminal:
+To run the following commands below, you'll need to have [Python](https://www.python.org/) installed on your computer. Open your terminal in the project root directory and run:
 
 ```
 # Create a virtual environment
